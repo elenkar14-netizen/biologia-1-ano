@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Биология 1° año — подготовка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: friendly field-notebook for a 12-year-old, calm and clear
+   IDEA: a herbarium sheet that grows — every learned topic turns a leaf green
+   PICTURE: a plant with six leaves (one per unit) that fill in with progress
+   COLOUR and TYPE: leaf green dominant, pale sap support, flower magenta accent; Rubik
+   LAYOUT: plant + countdown on top, then tabs: plan, topics, cards, test */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0e1812);--ink:light-dark(#14231a,#e7f1e9);--mut:light-dark(#5b6d61,#9db3a3);
+--leaf:light-dark(#1f6b3a,#5fc27f);--sap:light-dark(#eaf4e6,#16271b);--line:light-dark(#d5e4d2,#2a4031);
+--fl:light-dark(#c2255c,#ff7aa8);--card:light-dark(#ffffff,#132119)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Rubik,system-ui,sans-serif;overflow-x:clip}
+.band{padding:clamp(20px,4vw,48px) max(5vw,16px)}
+.wrap{max-width:980px;margin:0 auto}
+header.band{background:var(--leaf);color:#fff;padding-bottom:0}
+.top{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:end}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.05;margin:0 0 10px;text-wrap:balance}
+.lead{margin:0 0 16px;opacity:.92;max-width:52ch}
+.exam{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.exam input{font:inherit;font-size:16px;padding:8px 10px;border-radius:10px;border:0;min-height:44px}
+.left{font-weight:700;font-size:18px}
+.plant{height:230px;position:relative}.plant svg{position:absolute;inset:0;width:100%;height:100%}
+.total{font-size:clamp(28px,5vw,40px);font-weight:700;line-height:1}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;padding:8px max(5vw,16px)}
+nav button{flex:none;font:inherit;font-weight:500;border:0;background:none;color:var(--mut);padding:10px 16px;border-radius:999px;min-height:44px;cursor:pointer}
+nav button[aria-selected=true]{background:var(--sap);color:var(--leaf)}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--fl);outline-offset:2px}
+h2{font-size:26px;line-height:1.15;margin:0 0 6px}
+.mut{color:var(--mut);font-size:14px}
+.day{display:grid;grid-template-columns:76px minmax(0,1fr) 44px;gap:12px;align-items:start;padding:14px 0;border-bottom:1px solid var(--line)}
+.day b.n{font-size:22px;color:var(--leaf)}
+.day.done{opacity:.55}.day.done .t{text-decoration:line-through}
+.chk{width:44px;height:44px;border-radius:12px;border:2px solid var(--line);background:var(--card);cursor:pointer;font-size:20px;color:#fff}
+.chk.on{background:var(--leaf);border-color:var(--leaf)}
+details.u{border:1px solid var(--line);border-radius:16px;margin:12px 0;background:var(--card)}
+details.u>summary{list-style:none;cursor:pointer;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}
+details.u>summary::-webkit-details-marker{display:none}
+.ut{font-weight:700;font-size:18px}
+.bar{height:8px;border-radius:9px;background:var(--sap);overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--leaf);transition:width .3s}
+.pc{font-weight:700;color:var(--leaf)}
+.ub{padding:0 16px 16px}
+.pt{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.pt p{margin:0}.pt .es{font-weight:700}
+.pt .ru{color:var(--mut);font-size:15px}
+.flash{max-width:560px;margin:16px auto}
+.fc{min-height:240px;border-radius:20px;border:2px solid var(--line);background:var(--card);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px;cursor:pointer;user-select:none}
+.fc .big{font-size:clamp(24px,5vw,32px);font-weight:700;color:var(--leaf);line-height:1.15}
+.fc.back{background:var(--sap)}
+.fc .d{font-size:17px}.fc .r{color:var(--mut);margin-top:10px;font-size:15px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.btn{font:inherit;font-weight:500;min-height:44px;padding:8px 16px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.btn.p{background:var(--leaf);border-color:var(--leaf);color:#fff}
+.btn.a{border-color:var(--fl);color:var(--fl)}
+.btn.sel{border-color:var(--leaf);color:var(--leaf);background:var(--sap)}
+.q{border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;background:var(--card)}
+.q h3{margin:0 0 10px;font-size:18px;line-height:1.3}
+.opt{display:block;width:100%;text-align:left;margin:6px 0}
+.opt.ok{border-color:var(--leaf);background:var(--sap)}.opt.no{border-color:var(--fl)}
+.ex{margin:8px 0 0;font-size:15px;color:var(--mut)}
+.score{font-size:40px;font-weight:700;color:var(--leaf);line-height:1}
+.tip{background:var(--sap);border-radius:16px;padding:16px;margin:16px 0}
+.tip p{margin:4px 0}
+h3{font-size:19px;margin:24px 0 8px}
+.tag{display:inline-block;font-size:13px;background:var(--fl);color:#fff;border-radius:99px;padding:1px 8px;margin-left:6px}
+.day.now{background:var(--sap);border-radius:12px;padding-inline:10px}
+.exam-row b.n{color:var(--fl)}
+.wallet{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;background:var(--sap);border-radius:16px;padding:18px}
+.shop{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.btn:disabled{opacity:.6;cursor:default}
+.goal{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);align-items:center}
+.goal b{white-space:nowrap;color:var(--mut)}.goal.got b{color:var(--leaf)}
+.gi{width:24px;height:24px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:13px}
+.goal.got .gi{background:var(--leaf);border-color:var(--leaf);color:#fff}
+.adm{margin:12px 0;border:1px dashed var(--line);border-radius:12px;padding:10px 12px}.adm summary{cursor:pointer;min-height:32px;color:var(--mut)}
+.ed{display:flex;gap:8px;align-items:center;margin:8px 0}
+.ed input{font:inherit;font-size:16px;min-height:44px;padding:8px 10px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--ink);flex:1}
+.ed input[type=number]{flex:0 0 84px}
+.codebox{background:var(--sap);border-radius:12px;padding:14px;margin:8px 0;font-weight:500;user-select:all}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:20;padding:16px}
+.ovb{background:var(--bg);border-radius:20px;padding:24px;max-width:420px;width:100%;text-align:center}
+.ovb .big{font-size:56px}.ovb .row{justify-content:center}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--fl);color:#fff;font-weight:700;padding:12px 20px;border-radius:999px;z-index:30;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+[hidden]{display:none!important}
+@media(max-width:600px){.top{grid-template-columns:1fr}.plant{height:170px}.day{grid-template-columns:56px minmax(0,1fr) 44px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="band"><div class="wrap top">
+  <div>
+    <h1>Биология, 1° año: годовая контрольная</h1>
+    <p class="lead">По программе Escuelas Técnicas Raggio. Шесть тем — шесть листочков. Отмечай, что уже знаешь, и растение будет зеленеть.</p>
+    <div class="exam"><label for="ed">Дата контрольной:</label><input type="date" id="ed"><span class="left" id="left"></span></div>
+  </div>
+  <div>
+    <div class="plant" id="plant" aria-label="Прогресс по темам"></div>
+    <div style="text-align:right;padding-bottom:14px"><span class="total" id="total">0%</span> <span style="opacity:.85">выучено</span> · <a href="#prizes" class="total" id="stars" style="color:#fff;text-decoration:none">0 ⭐</a></div>
+  </div>
+</div></header>
+
+<nav><div class="wrap" role="tablist">
+  <button role="tab" data-v="plan" aria-selected="true">План</button>
+  <button role="tab" data-v="temas" aria-selected="false">Темы</button>
+  <button role="tab" data-v="cards" aria-selected="false">Карточки</button>
+  <button role="tab" data-v="test" aria-selected="false">Тест</button>
+  <button role="tab" data-v="prizes" aria-selected="false">Награды ⭐</button>
+</div></nav>
+
+<main class="band"><div class="wrap">
+<section id="v-plan">
+  <h2>План до 30 ноября</h2>
+  <p class="mut">Каждый день 30–40 минут. Порядок всегда один: прочитать тему → карточки → тест. День, отмеченный вовремя, даёт звезду.</p>
+  <div class="tip"><p><b>Как заниматься</b></p>
+  <p>1. Открой «Темы», прочитай нужный раздел вслух. Испанский термин — главное, русский — подсказка.</p>
+  <p>2. Пройди «Карточки» этой темы. «Повторить» — карточка вернётся.</p>
+  <p>3. Сделай «Тест» по теме. Меньше 80% — перечитай ошибки завтра.</p>
+  <p>4. Нарисуй от руки: семя, корень, цветок, клетку. На контрольной часто просят подписать рисунок.</p></div>
+  <div id="days"></div>
+</section>
+
+<section id="v-temas" hidden>
+  <h2>Темы программы</h2>
+  <p class="mut">Нажми на тему, чтобы раскрыть. Галочка — «я могу это объяснить своими словами».</p>
+  <div id="units"></div>
+</section>
+
+<section id="v-cards" hidden>
+  <h2>Карточки</h2>
+  <p class="mut">Нажми на карточку, чтобы перевернуть.</p>
+  <div class="row" id="cf"></div>
+  <div class="flash">
+    <div class="fc" id="fc" tabindex="0" role="button"></div>
+    <div class="row" style="justify-content:space-between"><span class="mut" id="cn"></span>
+    <span><button class="btn a" id="again">Повторить</button> <button class="btn p" id="know">Знаю</button></span></div>
+  </div>
+</section>
+
+<section id="v-test" hidden>
+  <h2>Тест</h2>
+  <p class="mut">Вопросы на испанском, как на контрольной. После ответа — объяснение.</p>
+  <div class="row" id="tf"></div>
+  <div id="res"></div>
+  <div id="qs"></div>
+</section>
+
+<section id="v-prizes" hidden>
+  <h2>Награды</h2>
+  <p class="mut">Звёзды даются за проверенные результаты. Их можно обменять на призы, которые назначают взрослые.</p>
+  <div id="pz"></div>
+</section>
+</div></main>
+<div class="ov" id="ov" hidden><div class="ovb" id="ovb" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+{
+const U=[
+{n:'1',t:'Las plantas con flores',r:'Растения с цветками: семя, корень, стебель, лист',c:'#1f6b3a',p:[
+['La semilla','Семя: tegumento (кожура), embrión (radícula, plúmula, cotiledones) и запас питания. Albuminada — запас в albumen/endospermo (кукуруза, пшеница). Exalbuminada — запас в семядолях (фасоль).'],
+['La germinación','Прорастание: нужны вода, кислород и тепло. Первой выходит radícula (будущий корень), потом plúmula (будущий стебель).'],
+['La raíz','Корень растёт из radícula. Формы: pivotante (стержневой, морковь), fasciculada (мочковатый, кукуруза), adventicia (придаточные). Зоны: cofia (чехлик), zona de crecimiento, pelos absorbentes (корневые волоски).'],
+['Estructura primaria y secundaria','Primaria — рост в длину (epidermis, corteza, cilindro central). Secundaria — рост в толщину благодаря cambium.'],
+['Difusión y ósmosis','Difusión — частицы идут из места, где их много, туда, где их мало. Ósmosis — вода проходит через полупроницаемую мембрану туда, где больше растворённых веществ. Так корень всасывает воду.'],
+['Funciones de la raíz','Fijación (держит в почве), absorción (воды и минеральных солей), conducción, reserva (запас).'],
+['El tallo','Стебель растёт из plúmula. Есть nudos (узлы), entrenudos, yemas (почки). Herbáceo (травянистый) или leñoso (деревянистый). Функции: sostén, conducción, reserva.'],
+['Conducción','Xilema несёт savia bruta (вода + минералы) вверх от корня. Floema несёт savia elaborada (сахара) от листьев ко всему растению.'],
+['La hoja','Части: limbo (пластинка), pecíolo (черешок), vaina (влагалище). Nervadura: paralela (параллельная) или reticulada (сетчатая). Simple — одна пластинка; compuesta — много листочков на одном черешке.'],
+['Fotosíntesis','CO₂ + agua + luz → glucosa + O₂. Идёт в cloroplastos благодаря clorofila, только на свету. Растение превращает энергию света в химическую энергию.'],
+['Respiración','Glucosa + O₂ → CO₂ + agua + energía. Идёт днём и ночью во всех живых клетках. Это противоположность фотосинтезу.'],
+['Modificaciones y adaptaciones','Морковь — raíz reservante; картофель — tubérculo (это стебель!); лук — bulbo; колючки кактуса — изменённые hojas; zarcillos (усики) у гороха; estolón у клубники; rizoma у имбиря.']]},
+{n:'2',t:'La reproducción',r:'Размножение, цветок, плод',c:'#c2255c',p:[
+['Reproducción vegetativa (asexual)','Без цветков и семян, из части растения: esquejes/estacas (черенки), estolones, tubérculos, bulbos, rizomas, injerto (прививка). Потомки — копии родителя.'],
+['Reproducción sexual','Через цветок: соединяются мужская и женская клетки, получается семя. Потомки отличаются от родителей.'],
+['Partes de la flor','Pedúnculo (цветоножка), receptáculo (цветоложе). 4 ciclos florales (verticilos): cáliz из sépalos, corola из pétalos, androceo из estambres (filamento + antera с polen), gineceo из carpelos/pistilo (estigma, estilo, ovario с óvulos).'],
+['Flores hermafroditas y unisexuales','Hermafrodita — есть и тычинки, и пестик (роза). Unisexual — только тычинки (masculina) или только пестик (femenina): кукуруза, тыква.'],
+['Inflorescencia','Соцветие — группа цветков на одном стебле: подсолнух, виноград, колос пшеницы.'],
+['Polinización','Перенос пыльцы с antera на estigma. Directa (самоопыление) или cruzada (перекрёстное). Агенты: ветер (anemófila), насекомые (entomófila), птицы, вода.'],
+['Fecundación','Пыльца прорастает tubo polínico, мужская клетка соединяется с óvulo → cigoto → embrión. После этого óvulo → semilla, ovario → fruto.'],
+['El fruto','Плод получается из ovario. Стенка — pericarpio: epicarpio (кожица), mesocarpio (мякоть), endocarpio (косточка у персика). Carnosos (сочные: помидор, персик) и secos (сухие: фасоль, подсолнух).'],
+['Dispersión','Распространение: ветром (одуванчик, крылатки клёна), животными (съедают или цепляются крючками), водой (кокос), сам растение «выстреливает» семена.']]},
+{n:'3',t:'Las plantas sin flores',r:'Растения без цветков, грибы, бактерии',c:'#0b7285',p:[
+['Talofitas','Тело — talo: нет настоящих корня, стебля и листьев.'],
+['Las algas','Водоросли: одноклеточные и многоклеточные; verdes, pardas (бурые), rojas. Живут в воде, делают фотосинтез и дают много кислорода планеты. Польза: еда, agar, удобрения. Размножение: деление, споры и половое.'],
+['Los hongos','Грибы не делают фотосинтез (нет хлорофилла) — питаются готовым: descomponedores (разлагают) или parásitos. Тело из hifas → micelio. Размножаются esporas. Levaduras — хлеб и пиво; Penicillium — пенициллин.'],
+['Los líquenes','Лишайник — simbiosis водоросли и гриба: водоросль кормит, гриб даёт воду и защиту. Первыми заселяют камни, показывают чистоту воздуха.'],
+['Las bacterias','Одноклеточные, procariotas (нет ядра). Формы: cocos (шарики), bacilos (палочки), espirilos (спирали), vibriones (запятые). Полезные (йогурт, разложение, азот в почве) и вредные (болезни).'],
+['Briofitas: los musgos','Мхи: нет сосудов, вместо корней rizoides, живут во влажных местах. Ciclo: зелёный мох — gametofito; на нём ножка с cápsula — esporofito со спорами. Для оплодотворения нужна вода. Удерживают воду, образуют почву и торф (turba).'],
+['Los helechos','Папоротники (pteridofitas): есть сосуды, корень, стебель-rizoma и листья — frondes. Под листьями soros со esporangios (споры). Из споры растёт маленький prótalo (gametofito). Тоже нужна вода.']]},
+{n:'4',t:'La estructura microscópica',r:'Клетка и ткани растений',c:'#5f3dc4',p:[
+['La unidad de la vida','Teoría celular: все живые существа состоят из клеток; клетка — единица строения и функции; каждая клетка происходит от другой клетки. Первым клетки увидел Hooke в пробке (1665).'],
+['Forma y tamaño','Клетки обычно микроскопические, их видно в microscopio. Форма зависит от функции.'],
+['La estructura celular','Три основные части: membrana plasmática, citoplasma, núcleo (с ADN). Procariota — без ядра (бактерии), eucariota — с ядром.'],
+['Célula vegetal vs animal','У растительной есть pared celular (из celulosa), cloroplastos и большая vacuola. У животной их нет.'],
+['Organelas','Mitocondria — дыхание, энергия. Cloroplasto — фотосинтез. Ribosomas — белки. Vacuola — запас воды и веществ.'],
+['Fisiología celular','Клетка питается (nutrición), реагирует на среду (relación) и делится (reproducción, división celular).'],
+['Tejidos de crecimiento','Meristemas: клетки постоянно делятся. Apicales — на кончиках корня и стебля (рост в длину). Laterales (cambium) — рост в толщину.'],
+['Tejidos definitivos','De protección: epidermis, súber (пробка). Parénquima: clorofiliano (фотосинтез) и de reserva. De sostén: colénquima, esclerénquima. De conducción: xilema и floema. Secretores.']]},
+{n:'5',t:'Agrupación de los vegetales',r:'Классификация и растительность Аргентины',c:'#e67700',p:[
+['Sistema de clasificación','Linneo придумал nomenclatura binomial: género + especie (Zea mays — кукуруза). Категории от большой к маленькой: reino, división, clase, orden, familia, género, especie.'],
+['Sin flores / con flores','Criptógamas (без цветков и семян): talofitas, briofitas, pteridofitas. Fanerógamas / espermatofitas (с семенами): gimnospermas и angiospermas.'],
+['Gimnospermas y angiospermas','Gimnospermas — семя «голое», нет плода (сосна, араукария). Angiospermas — семя внутри плода (все цветковые).'],
+['Monocotiledóneas y dicotiledóneas','Mono: 1 семядоля, параллельные жилки, мочковатый корень, части цветка по 3 (кукуруза, пшеница, лилия). Di: 2 семядоли, сетчатые жилки, стержневой корень, части по 4–5 (фасоль, роза, подсолнух).'],
+['Regiones fitogeográficas argentinas','Selva paranaense (Misiones: yerba mate, palo rosa); Yungas (Salta, Tucumán: nogal, cedro); Chaco (quebracho, algarrobo); Espinal (caldén, ñandubay); Pampa (pastizales, gramíneas); Monte (jarilla, cactus); Puna (tola, yareta); Altoandina; Estepa patagónica (coirón); Bosque andino‑patagónico (lenga, coihue, alerce, arrayán). Список в учебнике может немного отличаться — сверь с тетрадью.']]},
+{n:'6',t:'El hombre y las plantas',r:'Пищевые цепи и природные ресурсы',c:'#2b8a3e',p:[
+['Recursos alimentarios','Человек ест части растений: semillas (злаки, бобовые), frutos, raíces (морковь), tallos (картофель), hojas (салат).'],
+['Cadenas alimentarias','Productores (растения) → consumidores primarios (травоядные) → secundarios (хищники) → terciarios. Descomponedores (грибы, бактерии) возвращают вещества в почву. Несколько цепей вместе — red trófica.'],
+['Pirámides ecológicas','De números, de biomasa, de energía. Внизу всегда продуценты. На следующий уровень переходит около 10% энергии, поэтому пирамида сужается.'],
+['Recursos naturales','Renovables (вода, почва, леса, животные — если использовать разумно), no renovables (нефть, минералы), perpetuos/inagotables (солнце, ветер).'],
+['Equilibrio de la naturaleza','Человек нарушает равновесие: deforestación, contaminación, erosión del suelo, sobreexplotación, extinción de especies.'],
+['Conservación','Parques nacionales и áreas protegidas, reforestación, reciclaje, uso sustentable (брать не больше, чем природа восстанавливает).']]}
+];
+
+const C=[
+['1','Semilla albuminada','Semilla con reservas en el albumen (endospermo). Ej.: maíz.','Семя с запасом в эндосперме'],
+['1','Semilla exalbuminada','Semilla con reservas en los cotiledones. Ej.: poroto.','Запас в семядолях'],
+['1','Germinación','Desarrollo del embrión hasta formar una nueva planta. Necesita agua, oxígeno y temperatura.','Прорастание'],
+['1','Radícula','Parte del embrión que forma la raíz.','Зародышевый корешок'],
+['1','Plúmula','Parte del embrión que forma el tallo y las hojas.','Зародышевая почечка'],
+['1','Cotiledón','Hoja del embrión; puede guardar reservas.','Семядоля'],
+['1','Raíz pivotante','Una raíz principal gruesa con ramificaciones. Ej.: zanahoria.','Стержневой корень'],
+['1','Raíz fasciculada','Muchas raíces del mismo grosor. Ej.: maíz.','Мочковатый корень'],
+['1','Cofia','Capuchón que protege la punta de la raíz.','Корневой чехлик'],
+['1','Pelos absorbentes','Absorben agua y sales minerales del suelo.','Корневые волоски'],
+['1','Ósmosis','Paso del agua a través de una membrana semipermeable hacia donde hay más solutos.','Осмос'],
+['1','Difusión','Movimiento de partículas de mayor a menor concentración.','Диффузия'],
+['1','Xilema','Conduce savia bruta (agua y sales) desde la raíz hacia arriba.','Ксилема, восходящий ток'],
+['1','Floema','Conduce savia elaborada (azúcares) desde las hojas.','Флоэма, нисходящий ток'],
+['1','Limbo','Parte ancha y plana de la hoja.','Листовая пластинка'],
+['1','Pecíolo','Une el limbo con el tallo.','Черешок'],
+['1','Hoja compuesta','Limbo dividido en varios folíolos.','Сложный лист'],
+['1','Fotosíntesis','CO₂ + agua + luz → glucosa + oxígeno. En los cloroplastos.','Фотосинтез'],
+['1','Respiración','Glucosa + oxígeno → CO₂ + agua + energía. De día y de noche.','Дыхание'],
+['1','Tubérculo','Tallo subterráneo con reservas. Ej.: papa.','Клубень (это стебель)'],
+['2','Reproducción vegetativa','Asexual: nueva planta a partir de una parte (estaca, estolón, bulbo).','Вегетативное размножение'],
+['2','Cáliz','Conjunto de sépalos.','Чашечка'],
+['2','Corola','Conjunto de pétalos.','Венчик'],
+['2','Androceo','Parte masculina: estambres (filamento + antera).','Тычинки'],
+['2','Gineceo','Parte femenina: pistilo (estigma, estilo, ovario).','Пестик'],
+['2','Flor hermafrodita','Tiene androceo y gineceo.','Обоеполый цветок'],
+['2','Flor unisexual','Tiene solo androceo o solo gineceo.','Однополый цветок'],
+['2','Inflorescencia','Conjunto de flores sobre un mismo eje. Ej.: girasol.','Соцветие'],
+['2','Polinización','Transporte del polen de la antera al estigma.','Опыление'],
+['2','Fecundación','Unión del gameto masculino con la oósfera del óvulo.','Оплодотворение'],
+['2','Pericarpio','Pared del fruto: epicarpio, mesocarpio, endocarpio.','Околоплодник'],
+['2','Fruto','Se forma a partir del ovario; protege las semillas.','Плод — из завязи'],
+['3','Talo','Cuerpo sin raíz, tallo ni hojas verdaderos.','Слоевище'],
+['3','Micelio','Conjunto de hifas de un hongo.','Грибница'],
+['3','Liquen','Simbiosis entre un alga y un hongo.','Лишайник'],
+['3','Procariota','Célula sin núcleo definido. Ej.: bacteria.','Безъядерная клетка'],
+['3','Rizoides','Filamentos que fijan el musgo; no son raíces verdaderas.','Ризоиды'],
+['3','Soros','Grupos de esporangios bajo las hojas del helecho.','Сорусы'],
+['3','Prótalo','Gametofito pequeño del helecho.','Заросток'],
+['4','Teoría celular','Todos los seres vivos están formados por células; toda célula proviene de otra.','Клеточная теория'],
+['4','Pared celular','Capa rígida de celulosa de la célula vegetal.','Клеточная стенка'],
+['4','Cloroplasto','Organela con clorofila donde ocurre la fotosíntesis.','Хлоропласт'],
+['4','Mitocondria','Organela de la respiración celular; produce energía.','Митохондрия'],
+['4','Meristema','Tejido de crecimiento con células que se dividen.','Образовательная ткань'],
+['4','Parénquima','Tejido fundamental: clorofiliano o de reserva.','Основная ткань'],
+['4','Súber','Tejido de protección de tallos y raíces viejos (corcho).','Пробка'],
+['5','Nomenclatura binomial','Nombre científico: género + especie. Ej.: Zea mays.','Двойное название'],
+['5','Gimnosperma','Planta con semilla desnuda, sin fruto. Ej.: pino.','Голосеменное'],
+['5','Angiosperma','Planta con semilla dentro del fruto.','Покрытосеменное'],
+['5','Monocotiledónea','1 cotiledón, nervadura paralela, raíz fasciculada.','Однодольное'],
+['5','Dicotiledónea','2 cotiledones, nervadura reticulada, raíz pivotante.','Двудольное'],
+['5','Región fitogeográfica','Zona con vegetación característica por su clima y suelo.','Фитогеографический регион'],
+['6','Productor','Fabrica su alimento por fotosíntesis (plantas).','Продуцент'],
+['6','Consumidor primario','Herbívoro: come productores.','Консумент 1‑го порядка'],
+['6','Descomponedor','Hongos y bacterias que degradan restos.','Редуцент'],
+['6','Red trófica','Conjunto de cadenas alimentarias relacionadas.','Пищевая сеть'],
+['6','Recurso renovable','Se regenera si se usa con cuidado: agua, suelo, bosques.','Возобновляемый ресурс'],
+['6','Recurso no renovable','Se agota: petróleo, minerales.','Невозобновляемый ресурс']
+];
+
+const Q=[
+['1','¿Qué parte del embrión forma la raíz?',['La plúmula','La radícula','El cotiledón','El tegumento'],1,'Radícula → корень, plúmula → стебель и листья.'],
+['1','El poroto es una semilla…',['albuminada','exalbuminada','sin embrión','sin cotiledones'],1,'У фасоли запас в семядолях — значит exalbuminada.'],
+['1','¿Qué necesita una semilla para germinar?',['Luz, tierra y abono','Agua, oxígeno y temperatura adecuada','Solo luz','Solo tierra'],1,'Свет для прорастания обычно не нужен — нужны вода, кислород и тепло.'],
+['1','La zanahoria tiene raíz…',['fasciculada','pivotante','adventicia','aérea'],1,'Один толстый главный корень — pivotante.'],
+['1','¿Qué estructura absorbe agua y sales del suelo?',['La cofia','Los pelos absorbentes','El cambium','La epidermis del tallo'],1,'Cofia только защищает кончик корня.'],
+['1','La ósmosis es el paso de…',['agua a través de una membrana semipermeable','gases desde las hojas','azúcares por el floema','polen al estigma'],0,'Осмос — это всегда движение воды через мембрану.'],
+['1','La savia bruta circula por…',['el floema','el xilema','la cofia','los estomas'],1,'Xilema — вода и минералы вверх. Floema — сахара.'],
+['1','La papa es…',['una raíz','un tallo (tubérculo)','un fruto','una hoja'],1,'На картофеле есть «глазки» — почки. Значит, это стебель.'],
+['1','Productos de la fotosíntesis:',['CO₂ y agua','Glucosa y oxígeno','Solo energía','Sales minerales'],1,'CO₂ и вода — это то, что берётся. Получаются глюкоза и O₂.'],
+['1','La respiración de las plantas ocurre…',['solo de día','solo de noche','de día y de noche','solo en la raíz'],2,'Дыхание идёт всегда, фотосинтез — только на свету.'],
+['2','El conjunto de pétalos se llama…',['cáliz','corola','androceo','gineceo'],1,'Cáliz — чашелистики (sépalos).'],
+['2','La parte masculina de la flor es…',['el gineceo','el androceo','el ovario','el estigma'],1,'Androceo = тычинки с пыльцой.'],
+['2','El fruto se forma a partir…',['del óvulo','del ovario','del estambre','del pétalo'],1,'Ovario → fruto, óvulo → semilla.'],
+['2','Una flor con estambres y pistilo es…',['unisexual','hermafrodita','inflorescencia','estéril'],1,''],
+['2','La polinización por insectos se llama…',['anemófila','entomófila','hidrófila','autógama'],1,'Anemo — ветер, entomo — насекомые.'],
+['2','Plantar una estaca de rosa es reproducción…',['sexual','vegetativa','por semillas','por esporas'],1,'Нет цветков и семян — вегетативное размножение.'],
+['3','Los líquenes son una asociación entre…',['un musgo y un helecho','un alga y un hongo','dos bacterias','un hongo y una planta con flor'],1,'Это simbiosis: обоим выгодно.'],
+['3','Los hongos se alimentan…',['por fotosíntesis','de materia orgánica ya formada','solo de luz','de oxígeno'],1,'У грибов нет хлорофилла.'],
+['3','Las bacterias son células…',['eucariotas','procariotas','vegetales','con cloroplastos'],1,'У бактерий нет ядра.'],
+['3','Los soros del helecho contienen…',['semillas','esporangios con esporas','flores','frutos'],1,''],
+['3','Los musgos no tienen…',['clorofila','vasos conductores','células','esporas'],1,'Поэтому мхи маленькие и растут во влажных местах.'],
+['4','Organela exclusiva de la célula vegetal:',['núcleo','mitocondria','cloroplasto','membrana'],2,'Ещё только у растений: клеточная стенка и большая вакуоль.'],
+['4','¿Dónde está el ADN en una célula eucariota?',['En la pared','En el núcleo','En la vacuola','En la membrana'],1,''],
+['4','El tejido que produce el crecimiento es…',['el meristema','el súber','el xilema','el parénquima'],0,'Meristema — клетки всё время делятся.'],
+['4','El corcho (súber) es un tejido de…',['conducción','protección','reserva','crecimiento'],1,''],
+['5','Nombre científico correcto:',['maíz común','Zea mays','ZEA MAYS planta','Mays'],1,'Género с большой буквы + especie с маленькой.'],
+['5','El pino es una…',['angiosperma','gimnosperma','briofita','talofita'],1,'У сосны семена в шишке, без плода.'],
+['5','Hojas con nervadura paralela son típicas de…',['dicotiledóneas','monocotiledóneas','helechos','musgos'],1,''],
+['5','La yerba mate crece naturalmente en…',['la Puna','la Selva paranaense','la Patagonia','el Monte'],1,'Misiones — влажный субтропический лес.'],
+['5','La lenga y el coihue son árboles del…',['Chaco','Bosque andino‑patagónico','Espinal','Monte'],1,''],
+['6','En una cadena alimentaria las plantas son…',['consumidores','productores','descomponedores','carnívoros'],1,''],
+['6','¿Qué porcentaje aproximado de energía pasa al siguiente nivel?',['100%','50%','10%','0%'],2,'Поэтому пирамида энергии узкая вверху.'],
+['6','Un ejemplo de recurso no renovable es…',['el agua','el bosque','el petróleo','el suelo'],2,''],
+['6','Los descomponedores son…',['hongos y bacterias','plantas verdes','herbívoros','aves'],0,'Возвращают минеральные вещества в почву.']
+];
+
+const K='bio1-raggio-v1';
+let S={pts:{},dd:{},known:{},exam:'2026-11-30',tbest:{},cdone:{},act:{},spent:[],name:'Саша',
+prizes:[['Альфахор',3],['+1 час игрового времени в выбранный день',10],['Особый приз — придумай сам!',25]]};
+try{const s=JSON.parse(localStorage.getItem(K));if(s)S=Object.assign(S,s)}catch(e){}
+if(!S.exam)S.exam='2026-11-30';
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id);
+
+const D=[['2026-11-21','1','Семя, корень, стебель','От «La semilla» до «Conducción», карточки'],
+['2026-11-22','1','Лист, фотосинтез, видоизменения','До конца темы + тест 1'],
+['2026-11-23','2','Размножение, цветок, плод','Нарисуй цветок, подпиши 10 частей + тест 2'],
+['2026-11-24','3','Без цветков: водоросли, грибы, мхи, папоротники','Карточки + тест 3'],
+['2026-11-25','4','Клетка и ткани','Нарисуй растительную клетку + тест 4'],
+['2026-11-26','5','Классификация и регионы Аргентины','Найди регионы на карте + тест 5'],
+['2026-11-27','6','Пищевые цепи и ресурсы','Карточки + тест 6'],
+['2026-11-28','*','Все карточки подряд','Пока не кончится стопка «Повторить»'],
+['2026-11-29','*','Большой тест по всем темам','Разбери ошибки, вечером отдых и сон']];
+const WD=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+const today=()=>{const t=new Date();return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0')};
+const dl=s=>{const d=new Date(s+'T00:00');return WD[d.getDay()]+' '+d.getDate()};
+
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+function streak(){let n=0;const d=new Date();if(!S.act[fmt(d)])d.setDate(d.getDate()-1);while(S.act[fmt(d)]){n++;d.setDate(d.getDate()-1)}return n}
+function mark(){S.act[today()]=1;S.maxst=Math.max(S.maxst||0,streak())}
+function goals(){
+  const g=[];
+  U.forEach(u=>{g.push([`Тема ${u.n}: тест по теме на 80% и выше`,2,(S.tbest[u.n]||0)>=80]);g.push([`Тема ${u.n}: все карточки в «Знаю»`,1,!!S.cdone[u.n]])});
+  g.push(['Большой тест по всем темам на 80% и выше',5,(S.tbest.all||0)>=80]);
+  const ok=D.filter((d,i)=>S.dd[i]&&S.dd[i]<=d[0]).length;
+  g.push([`Дни плана, отмеченные вовремя: ${ok} из ${D.length}`,ok,ok>0,1]);
+  g.push(['Серия 3 дня подряд',2,(S.maxst||0)>=3]);
+  g.push(['Серия 7 дней подряд',5,(S.maxst||0)>=7]);
+  return g}
+const earned=()=>goals().reduce((a,g)=>a+(g[2]?g[1]:0),0);
+const spent=()=>S.spent.reduce((a,s)=>a+s.c,0);
+let lastE=null;
+function toast(t){const el=$('toast');el.textContent=t;el.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>el.hidden=true,2600)}
+function refresh(){const e=earned();if(lastE!==null&&e>lastE)toast(`+${e-lastE} ⭐ Отлично!`);lastE=e;$('stars').textContent=(e-spent())+' ⭐';prizes()}
+function checkCards(){U.forEach(u=>{if(C.every((c,i)=>c[0]!==u.n||S.known[i]))S.cdone[u.n]=1})}
+
+function prizes(){
+  const g=goals(),e=earned(),s=spent(),b=e-s,st=streak();
+  const code=`${S.name||'Я'} · биология 1° año · ${U.filter(u=>prog(u)===1).length}/6 тем · ${e} ⭐ заработано · серия ${st} дн.`;
+  $('pz').innerHTML=`<div class="wallet"><div><span class="score">${b} ⭐</span><div class="mut">можно потратить</div></div>
+  <div class="mut">Заработано ${e} · потрачено ${s}<br>Серия: <b>${st} дн.</b> подряд</div></div>
+  <h3>Магазин</h3>
+  ${S.prizes.map((p,i)=>`<div class="shop"><div><b>${esc(p[0])}</b><div class="mut">${p[1]} ⭐</div></div><button class="btn ${b>=p[1]?'p':''}" data-buy="${i}" ${b>=p[1]?'':'disabled'}>${b>=p[1]?'Обменять':'Ещё '+(p[1]-b)+' ⭐'}</button></div>`).join('')||'<p class="mut">Призов пока нет — добавьте ниже.</p>'}
+  <details class="adm"><summary>Настроить призы (для взрослых)</summary>
+  ${S.prizes.map((p,i)=>`<div class="ed"><input aria-label="Приз" value="${esc(p[0])}" data-pn="${i}"><input aria-label="Цена" type="number" min="1" value="${p[1]}" data-pc="${i}"><button class="btn" data-pd="${i}" aria-label="Удалить">✕</button></div>`).join('')}
+  <button class="btn" id="padd">+ Добавить приз</button></details>
+  <h3>Как заработать звёзды</h3>
+  ${g.map(x=>`<div class="goal ${x[2]?'got':''}"><span class="gi">${x[2]?'✓':''}</span><span>${x[0]}</span><b>${x[3]?'+1 за день':'+'+x[1]} ⭐</b></div>`).join('')}
+  <p class="mut">Галочки в «Темах» звёзд не дают — только то, что проверено тестом и карточками.</p>
+  <h3>Поделиться с друзьями</h3>
+  <div class="ed"><label for="nm" class="mut">Имя</label><input id="nm" value="${esc(S.name||'')}"></div>
+  <div class="codebox" id="code">${esc(code)}</div>
+  <button class="btn p" id="copy">Скопировать</button> <span class="mut" id="cpd"></span>
+  ${S.spent.length?`<h3>История призов</h3>${S.spent.slice().reverse().map(x=>`<div class="goal"><span class="gi">🎁</span><span>${esc(x.n)} <span class="mut">· ${x.t}</span></span><b>−${x.c} ⭐</b></div>`).join('')}`:''}`;
+}
+function modal(html){$('ovb').innerHTML=html;$('ov').hidden=false}
+$('ov').onclick=e=>{if(e.target.id==='ov'||e.target.dataset.x!==undefined)$('ov').hidden=true;
+  const y=e.target.closest('[data-yes]');if(y){const p=S.prizes[+y.dataset.yes];if(!p||earned()-spent()<p[1])return;
+  const t=new Date().toLocaleString('ru-RU',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+  S.spent.push({n:p[0],c:p[1],t});save();refresh();
+  modal(`<div class="big">🎁</div><h2>${esc(S.name||'')} получает: ${esc(p[0])}</h2><p class="mut">${t} · −${p[1]} ⭐</p><p>Покажи этот экран взрослому.</p><button class="btn p" data-x>Готово</button>`)}};
+$('pz').addEventListener('click',e=>{
+  const b=e.target.closest('[data-buy]');if(b){const p=S.prizes[+b.dataset.buy];modal(`<h2>Обменять ${p[1]} ⭐ на «${esc(p[0])}»?</h2><div class="row"><button class="btn p" data-yes="${b.dataset.buy}">Да, обменять</button><button class="btn" data-x>Отмена</button></div>`)}
+  const d=e.target.closest('[data-pd]');if(d){S.prizes.splice(+d.dataset.pd,1);save();prizes();$('pz').querySelector('.adm').open=true}
+  if(e.target.id==='padd'){S.prizes.push(['Новый приз',5]);save();prizes();$('pz').querySelector('.adm').open=true}
+  if(e.target.id==='copy'){const t=$('code').textContent;try{navigator.clipboard.writeText(t).then(()=>$('cpd').textContent='Скопировано!',()=>$('cpd').textContent='Выдели текст и скопируй вручную')}catch(x){$('cpd').textContent='Выдели текст и скопируй вручную'}}
+});
+$('pz').addEventListener('change',e=>{const t=e.target;
+  if(t.dataset.pn!==undefined){S.prizes[+t.dataset.pn][0]=t.value.trim()||'Приз'}
+  else if(t.dataset.pc!==undefined){S.prizes[+t.dataset.pc][1]=Math.max(1,parseInt(t.value)||1)}
+  else if(t.id==='nm'){S.name=t.value.trim()}else return;
+  save();prizes();if(t.id!=='nm')$('pz').querySelector('.adm').open=true});
+
+function prog(u){const n=u.p.length;let k=0;u.p.forEach((_,i)=>{if(S.pts[u.n+'-'+i])k++});return k/n}
+
+function plant(){
+  const pos=[[60,150,-1],[140,128,1],[58,104,-1],[142,82,1],[62,58,-1],[138,38,1]];
+  const leaves=U.map((u,i)=>{const [x,y,s]=pos[i],p=prog(u);
+    const path=`M100 ${y+10} C ${100+s*20} ${y-18}, ${x+s*10} ${y-22}, ${x} ${y} C ${x+s*14} ${y+16}, ${100+s*16} ${y+20}, 100 ${y+10}Z`;
+    return `<path d="${path}" fill="rgba(255,255,255,.18)" stroke="#fff" stroke-width="1.5"/>
+    <path d="${path}" fill="#b7f0c4" opacity="${(0.15+p*0.85).toFixed(2)}"/>
+    <text x="${x+s*-4}" y="${y+4}" font-size="11" font-weight="700" fill="#0d3b1f" text-anchor="middle">${u.n}</text>`}).join('');
+  const all=U.every(u=>prog(u)===1);
+  $('plant').innerHTML=`<svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMax meet" role="img">
+  <path d="M100 196 C 96 150, 104 100, 100 22" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+  ${leaves}
+  <g transform="translate(100 18)">${[0,72,144,216,288].map(a=>`<ellipse rx="6" ry="11" transform="rotate(${a}) translate(0 -9)" fill="${all?'#ff7aa8':'rgba(255,255,255,.25)'}"/>`).join('')}<circle r="5" fill="${all?'#ffd43b':'rgba(255,255,255,.4)'}"/></g>
+  <rect x="62" y="186" width="76" height="14" rx="3" fill="rgba(0,0,0,.18)"/></svg>`;
+  const tot=U.reduce((a,u)=>a+u.p.length,0),k=Object.values(S.pts).filter(Boolean).length;
+  $('total').textContent=Math.round(k/tot*100)+'%';
+}
+
+function days(){
+  const td=today();
+  $('days').innerHTML=D.map((d,i)=>{const on=S.dd[i],late=on&&on>d[0];return `<div class="day ${on?'done':''} ${d[0]===td?'now':''}"><b class="n">${dl(d[0])}</b>
+  <div><div class="t"><b>${d[2]}</b>${d[0]===td?' <span class="tag">сегодня</span>':''}</div><div class="mut">${d[1]==='*'?'Повторение':'Тема '+d[1]} · ${d[3]}${on?(late?' · без звезды, сделано позже':' · +1 ⭐'):''}</div></div>
+  <button class="chk ${on?'on':''}" data-d="${i}" aria-label="${dl(d[0])} готово">${on?'✓':''}</button></div>`}).join('')
+  +`<div class="day exam-row"><b class="n">Пн 30</b><div><b>Контрольная. Удачи!</b><div class="mut">Утром можно 10 минут полистать карточки</div></div><span></span></div>`;
+}
+
+function units(){
+  const open=[...document.querySelectorAll('details.u[open]')].map(d=>d.dataset.u);
+  $('units').innerHTML=U.map(u=>{const p=prog(u);return `<details class="u" data-u="${u.n}" ${open.includes(u.n)?'open':''}><summary>
+  <div><div class="ut">${u.n}. ${u.t}</div><div class="mut">${u.r}</div><div class="bar"><i style="width:${p*100}%"></i></div></div>
+  <span class="pc">${Math.round(p*100)}%</span></summary><div class="ub">
+  ${u.p.map((x,i)=>{const id=u.n+'-'+i,on=S.pts[id];return `<div class="pt"><button class="chk ${on?'on':''}" data-p="${id}" aria-label="Знаю: ${x[0]}">${on?'✓':''}</button><div><p class="es">${x[0]}</p><p class="ru">${x[1]}</p></div></div>`}).join('')}
+  </div></details>`}).join('');
+}
+
+function exam(){
+  $('ed').value=S.exam||'';
+  if(!S.exam){$('left').textContent='';return}
+  const t=new Date();t.setHours(0,0,0,0);const e=new Date(S.exam+'T00:00');const n=Math.round((e-t)/864e5);
+  $('left').textContent=n>1?`осталось ${n} дн.`:n===1?'завтра!':n===0?'сегодня! Удачи!':'';
+}
+
+let cu='all',deck=[],ci=0,flip=false;
+function filters(el,cur,fn){el.innerHTML=[['all','Все'],...U.map(u=>[u.n,'Тема '+u.n])].map(([v,l])=>`<button class="btn ${cur===v?'sel':''}" data-f="${v}">${l}</button>`).join('');
+  el.onclick=e=>{const b=e.target.closest('[data-f]');if(b)fn(b.dataset.f)}}
+function buildDeck(){deck=C.map((c,i)=>i).filter(i=>(cu==='all'||C[i][0]===cu)&&!S.known[i]);ci=0;flip=false;card();filters($('cf'),cu,f=>{cu=f;buildDeck()})}
+function card(){
+  const fc=$('fc');
+  if(!deck.length){fc.className='fc back';fc.innerHTML='<div class="big">Все карточки выучены!</div><div class="r">Нажми, чтобы начать заново</div>';$('cn').textContent='';return}
+  const c=C[deck[ci]];fc.className='fc'+(flip?' back':'');
+  fc.innerHTML=flip?`<div class="d">${c[2]}</div><div class="r">${c[3]}</div>`:`<div class="mut">Тема ${c[0]}</div><div class="big">${c[1]}</div><div class="r">Что это? Нажми, чтобы проверить</div>`;
+  $('cn').textContent=`Осталось: ${deck.length}`;
+}
+$('fc').onclick=()=>{if(!deck.length){C.forEach((c,i)=>{if(cu==='all'||c[0]===cu)delete S.known[i]});save();buildDeck();return}flip=!flip;card()};
+$('fc').onkeydown=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();$('fc').click()}};
+$('know').onclick=()=>{if(!deck.length)return;S.known[deck[ci]]=1;checkCards();mark();save();refresh();deck.splice(ci,1);if(ci>=deck.length)ci=0;flip=false;card()};
+$('again').onclick=()=>{if(!deck.length)return;const x=deck.splice(ci,1)[0];deck.push(x);flip=false;card()};
+
+let tu='all',ans={};
+function test(){
+  filters($('tf'),tu,f=>{tu=f;ans={};test()});
+  const list=Q.map((q,i)=>i).filter(i=>tu==='all'||Q[i][0]===tu);
+  $('qs').innerHTML=list.map((i,k)=>{const q=Q[i],a=ans[i];return `<div class="q"><h3>${k+1}. ${q[1]}</h3>
+  ${q[2].map((o,j)=>{let c='';if(a!==undefined){if(j===q[3])c='ok';else if(j===a)c='no'}return `<button class="btn opt ${c}" data-q="${i}" data-o="${j}" ${a!==undefined?'disabled':''}>${o}</button>`}).join('')}
+  ${a!==undefined?`<p class="ex">${a===q[3]?'✓ Верно.':'✗ Правильно: '+q[2][q[3]]+'.'} ${q[4]}</p>`:''}</div>`}).join('');
+  const done=list.filter(i=>ans[i]!==undefined),ok=done.filter(i=>ans[i]===Q[i][3]).length;
+  if(done.length===list.length&&list.length){const pc=Math.round(ok/list.length*100);if(pc>(S.tbest[tu]||0)){S.tbest[tu]=pc}mark();save();refresh()}
+  $('res').innerHTML=done.length?`<div class="tip"><span class="score">${Math.round(ok/done.length*100)}%</span> <span class="mut">${ok} из ${done.length} верно · всего вопросов ${list.length}</span>
+  ${done.length===list.length?`<p>${ok/list.length>=.8?'Отлично, тема готова!':'Перечитай темы с ошибками и пройди ещё раз.'}</p><button class="btn p" id="rt">Пройти заново</button>`:''}</div>`:'';
+  const rt=$('rt');if(rt)rt.onclick=()=>{ans={};test()};
+}
+$('qs').onclick=e=>{const b=e.target.closest('[data-q]');if(!b)return;ans[b.dataset.q]=+b.dataset.o;const y=window.scrollY;test();window.scrollTo(0,y)};
+
+document.body.addEventListener('click',e=>{
+  const p=e.target.closest('[data-p]');if(p){S.pts[p.dataset.p]=!S.pts[p.dataset.p];save();units();plant();refresh()}
+  const d=e.target.closest('[data-d]');if(d){const i=d.dataset.d;if(S.dd[i])delete S.dd[i];else{S.dd[i]=today();mark()}save();days();refresh()}
+});
+$('ed').onchange=e=>{S.exam=e.target.value;save();exam()};
+
+const tabs=[...document.querySelectorAll('nav button')];
+const VW=['plan','temas','cards','test','prizes'];
+function show(v){tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.v===v));VW.forEach(x=>$('v-'+x).hidden=x!==v);try{if(location.hash!=='#'+v)history.replaceState(null,'','#'+v)}catch(e){}}
+tabs.forEach(t=>t.onclick=()=>show(t.dataset.v));
+window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(VW.includes(h))show(h)});
+$('stars').onclick=e=>{e.preventDefault();show('prizes');scrollTo(0,0)};
+
+checkCards();plant();days();units();exam();buildDeck();test();refresh();
+const h=location.hash.slice(1);if(VW.includes(h))show(h);
+}
+</script>
+</body>
+</html>
