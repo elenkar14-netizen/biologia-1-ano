@@ -102,7 +102,8 @@ h3{font-size:19px;margin:24px 0 8px}
 [hidden]{display:none!important}
 @media(max-width:600px){.top{grid-template-columns:1fr}.plant{height:170px}.day{grid-template-columns:56px minmax(0,1fr) 44px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
-.lesson-extra{border-left:3px solid var(--leaf);padding:8px 12px;margin:10px 0;background:var(--sap);border-radius:0 10px 10px 0}.lesson-extra p{margin:5px 0;font-size:15px}.check-question{font-style:italic}.unit-recap{margin:22px 0 0;padding:16px;background:var(--sap);border-radius:14px}.compare-scroll{overflow-x:auto}.compare{width:100%;border-collapse:collapse;font-size:14px;background:var(--card)}.compare th,.compare td{text-align:left;padding:10px;border:1px solid var(--line);vertical-align:top}.compare th{color:var(--leaf)}.practice{background:var(--card);padding:12px;margin:12px 0;border-radius:10px}.practice summary{cursor:pointer;font-weight:700}.diagram-practice{max-width:520px;margin:auto}.pt .ru{line-height:1.7} </style>
+.lesson-extra{border-left:3px solid var(--leaf);padding:8px 12px;margin:10px 0;background:var(--sap);border-radius:0 10px 10px 0}.lesson-extra p{margin:5px 0;font-size:15px}.check-question{font-style:italic}.unit-recap{margin:22px 0 0;padding:16px;background:var(--sap);border-radius:14px}.compare-scroll{overflow-x:auto}.compare{width:100%;border-collapse:collapse;font-size:14px;background:var(--card)}.compare th,.compare td{text-align:left;padding:10px;border:1px solid var(--line);vertical-align:top}.compare th{color:var(--leaf)}.practice{background:var(--card);padding:12px;margin:12px 0;border-radius:10px}.practice summary{cursor:pointer;font-weight:700}.diagram-practice{max-width:520px;margin:auto}.pt .ru{line-height:1.7} .diagram-practice svg text{opacity:0}.diagram-practice.revealed svg text{opacity:1}.diagram-practice .fig2{margin-bottom:8px}.reveal-labels{margin:5px 0 16px}.practice summary{min-height:44px}
+</style>
 </head>
 <body>
 <header class="band"><div class="wrap top">
@@ -282,7 +283,7 @@ const COMPARA={
 };
 const PRACTICA=[['1','1-0','Semilla de poroto','tegumento, plúmula, radícula, cotiledón'],['2','2-2','Partes de la flor','pétalo, antera, filamento, estigma, estilo, ovario, óvulos'],['3','3-6','Helecho y esporas','soros, esporangios, frondes'],['4','4-3','Célula vegetal','núcleo, pared celular, cloroplastos, vacuola'],['5','5-4','Regiones de Argentina','Pampeana, Paranaense, Patagónica, Yungas'],['6','6-1','Cadena alimentaria','productor, consumidor primario, consumidor secundario']];
 function tablaUnidad(n){const rows=COMPARA[n];return '<div class="compare-scroll"><table class="compare"><thead><tr>'+rows[0].map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.slice(1).map(r=>'<tr>'+r.map(x=>'<td>'+x+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'}
-function ejercicioUnidad(n){const items=PRACTICA.filter(x=>x[0]===n);return items.map(([_,id,title,words])=>{const figs=FIG[id]||[];return '<details class="practice"><summary>✏️ Практика: '+title+' — подпиши схему</summary><p>Сначала назови части на испанском, не глядя на подписи. Запиши их на бумаге, затем открой подсказку и сравни.</p><p><b>Palabras para usar:</b> '+words+'.</p>'+figs.map(fig=>'<div class="diagram-practice">'+fig+'</div>').join('')+'<p class="mut">Рисунок выше служит проверкой. Для самостоятельного задания перерисуй контур без подписей, затем добавь термины.</p></details>'}).join('')}
+function ejercicioUnidad(n){const items=PRACTICA.filter(x=>x[0]===n);return items.map(([_,id,title,words])=>{const figs=FIG[id]||[];return '<details class="practice"><summary>✏️ Практика: '+title+' — подпиши схему</summary><p>Сначала назови части на испанском, не глядя на подписи. Запиши их на бумаге, затем открой подсказку и сравни.</p><p><b>Palabras para usar:</b> '+words+'.</p>'+figs.map(fig=>'<div class="diagram-practice">'+fig+'<button type="button" class="btn reveal-labels" aria-pressed="false">Показать подписи / Ver respuestas</button></div>').join('')+'<p class="mut">Рисунок выше служит проверкой. Для самостоятельного задания перерисуй контур без подписей, затем добавь термины.</p></details>'}).join('')}
 
 const C=[
 ['1','Semilla albuminada','Semilla con reservas en el albumen (endospermo). Ej.: maíz.','Семя с запасом в эндосперме'],
@@ -700,6 +701,8 @@ function test(){
 $('qs').onclick=e=>{const b=e.target.closest('[data-q]');if(!b)return;ans[b.dataset.q]=+b.dataset.o;const y=window.scrollY;test();window.scrollTo(0,y)};
 
 document.body.addEventListener('click',e=>{
+  const reveal=e.target.closest('.reveal-labels');if(reveal){const box=reveal.closest('.diagram-practice');const shown=box.classList.toggle('revealed');reveal.textContent=shown?'Скрыть подписи / Ocultar respuestas':'Показать подписи / Ver respuestas';reveal.setAttribute('aria-pressed',String(shown));}
+
   const p=e.target.closest('[data-p]');if(p){S.pts[p.dataset.p]=!S.pts[p.dataset.p];save();units();plant();refresh()}
   const d=e.target.closest('[data-d]');if(d){const i=d.dataset.d;if(S.dd[i])delete S.dd[i];else{S.dd[i]=today();mark()}save();days();refresh()}
 });
