@@ -90,6 +90,14 @@ h3{font-size:19px;margin:24px 0 8px}
 .ovb{background:var(--bg);border-radius:20px;padding:24px;max-width:420px;width:100%;text-align:center}
 .ovb .big{font-size:56px}.ovb .row{justify-content:center}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--fl);color:#fff;font-weight:700;padding:12px 20px;border-radius:999px;z-index:30;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.fig2{margin:10px 0 4px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px}
+.fig2 svg{display:block;width:100%;height:auto;max-width:460px;margin:0 auto;overflow:visible}
+.fig2 text{font:12.5px Rubik,system-ui,sans-serif;fill:var(--ink)}
+.fig2 text.s{font-size:11.5px}.fig2 text.b{font-weight:700}.fig2 text.in{fill:#14231a}
+.fig2 .l{stroke:var(--mut);stroke-width:1}.fig2 .dt{fill:var(--ink)}
+.fig2 .gr{stroke:var(--mut);stroke-dasharray:4 4}.fig2 .ins{fill:var(--sap);stroke:var(--line);stroke-width:2}
+.fig2 figcaption{font-size:14px;color:var(--mut);text-align:center;margin-top:6px}
+.badge{display:inline-block;font-size:12px;color:var(--leaf);background:var(--sap);border-radius:99px;padding:0 8px;margin-left:6px;vertical-align:2px}
 [hidden]{display:none!important}
 @media(max-width:600px){.top{grid-template-columns:1fr}.plant{height:170px}.day{grid-template-columns:56px minmax(0,1fr) 44px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -318,6 +326,113 @@ const Q=[
 ['6','Los descomponedores son…',['hongos y bacterias','plantas verdes','herbívoros','aves'],0,'Возвращают минеральные вещества в почву.']
 ];
 
+const L=(x,y,tx,ty,t,a)=>`<line class="l" x1="${x}" y1="${y}" x2="${tx}" y2="${ty}"/><circle class="dt" cx="${x}" cy="${y}" r="2"/><text x="${a?tx-4:tx+4}" y="${ty+4}"${a?' text-anchor="end"':''}>${t}</text>`;
+const T=(x,y,t,c)=>`<text x="${x}" y="${y}" text-anchor="middle"${c?` class="${c}"`:''}>${t}</text>`;
+const AR=(x1,y1,x2,y2,c)=>{const a=Math.atan2(y2-y1,x2-x1),h=9,p=d=>[(x2-h*Math.cos(a+d)).toFixed(1),(y2-h*Math.sin(a+d)).toFixed(1)].join(',');return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="3"/><polygon points="${x2},${y2} ${p(.5)} ${p(-.5)}" fill="${c}"/>`};
+const F=(vb,b,c)=>`<figure class="fig2"><svg viewBox="${vb}" role="img" aria-label="${c}">${b}</svg><figcaption>${c}</figcaption></figure>`;
+const rng=(a,b,s)=>{const r=[];for(let i=a;i<=b;i+=s)r.push(i);return r};
+const FIG={
+'1-0':[F('0 0 340 200',`<ellipse cx="140" cy="100" rx="92" ry="62" fill="#b5763a"/><ellipse cx="140" cy="100" rx="84" ry="54" fill="#f3dca8"/>
+<path d="M204 90 Q214 110 206 132" stroke="#e0a040" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M204 90 Q196 74 182 72 Q192 84 204 90 Q206 74 218 68 Q212 82 204 90Z" fill="#5cab48"/>
+${L(150,42,250,24,'tegumento')}${L(205,78,250,62,'plúmula')}${L(208,124,250,118,'radícula')}${L(110,120,250,170,'cotiledón')}`,
+'Semilla de poroto abierta. Embrión = plúmula + radícula. Es exalbuminada: la reserva está en los cotiledones.')],
+'1-2':[F('0 0 340 220',`<path d="M96 30 Q80 38 62 50" stroke="#d9a066" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M96 10 L96 160 Q110 196 124 160 L124 10Z" fill="#d9a066"/><rect x="96" y="126" width="28" height="34" fill="#f0c48a"/>
+${rng(66,118,7).map(y=>`<line x1="96" y1="${y}" x2="78" y2="${y-5}" stroke="#a8743c" stroke-width="1.5"/><line x1="124" y1="${y}" x2="142" y2="${y-5}" stroke="#a8743c" stroke-width="1.5"/>`).join('')}
+<path d="M96 160 Q110 214 124 160 Q110 178 96 160Z" fill="#7a4a1e"/>
+${L(124,30,170,30,'zona de ramificación')}${L(141,92,170,92,'pelos absorbentes')}${L(124,143,170,143,'zona de crecimiento')}${L(114,188,170,194,'cofia')}`,'Punta de la raíz y sus zonas'),
+F('0 0 340 175',`<line x1="10" y1="24" x2="330" y2="24" class="gr"/>
+<path d="M85 24 Q70 6 58 8 M85 24 Q86 4 94 4 M85 24 Q100 6 112 10" stroke="#5cab48" stroke-width="3" fill="none"/>
+<path d="M72 24 L98 24 L86 150 Z" fill="#e8823a"/><path d="M80 60 L60 70 M90 80 L112 92 M83 105 L66 114" stroke="#c96a26" stroke-width="2"/>
+${rng(0,7,1).map(i=>`<path d="M250 24 Q${250+(i-3.5)*12} 80 ${250+(i-3.5)*18} ${128+(i%2)*14}" stroke="#c49a6c" stroke-width="3" fill="none"/>`).join('')}
+<path d="M250 24 L236 4 M250 24 L250 2 M250 24 L264 4" stroke="#5cab48" stroke-width="3"/>
+${T(85,170,'pivotante (zanahoria)')}${T(250,170,'fasciculada (maíz)')}`,'Formas de raíz')],
+'1-7':[F('0 0 340 232',`<rect x="160" y="40" width="20" height="160" rx="4" fill="#8cc265"/>
+<ellipse cx="130" cy="48" rx="34" ry="13" fill="#4caf50" transform="rotate(-20 130 48)"/><ellipse cx="210" cy="48" rx="34" ry="13" fill="#4caf50" transform="rotate(20 210 48)"/>
+<path d="M170 200 L150 226 M170 200 L170 230 M170 200 L190 226" stroke="#b07a40" stroke-width="3"/>
+${AR(165,195,165,48,'#1c7ed6')}${AR(176,48,176,195,'#e8590c')}
+<text x="150" y="112" text-anchor="end" fill="#1c7ed6" font-weight="700">xilema ↑</text><text x="150" y="130" text-anchor="end">savia bruta:</text><text x="150" y="146" text-anchor="end">agua + sales</text>
+<text x="190" y="112" fill="#e8590c" font-weight="700">floema ↓</text><text x="190" y="130">savia elaborada:</text><text x="190" y="146">azúcares</text>`,'Conducción en el tallo: xilema sube, floema baja')],
+'1-8':[F('0 0 340 205',`<path d="M70 100 Q150 25 250 100 Q150 175 70 100Z" fill="#69b34c"/><line x1="70" y1="100" x2="250" y2="100" stroke="#2f7a28" stroke-width="2.5"/>
+${[[100,22],[130,32],[160,34],[190,28],[215,18]].map(([x,h])=>`<line x1="${x}" y1="100" x2="${x+20}" y2="${100-h}" stroke="#2f7a28" stroke-width="1.5"/><line x1="${x}" y1="100" x2="${x+20}" y2="${100+h}" stroke="#2f7a28" stroke-width="1.5"/>`).join('')}
+<path d="M70 100 L36 138" stroke="#4a8f3a" stroke-width="5" stroke-linecap="round"/><path d="M36 138 Q20 150 24 168 Q40 160 44 144Z" fill="#7cc06a"/>
+${L(170,62,262,40,'limbo')}${L(205,100,262,124,'nervadura')}${L(53,119,84,160,'pecíolo')}${L(28,160,60,192,'vaina')}`,'Partes de la hoja (nervadura reticulada)'),
+F('0 0 340 150',`<line x1="85" y1="132" x2="85" y2="95" stroke="#4a8f3a" stroke-width="4"/><path d="M85 95 Q52 60 85 14 Q118 60 85 95Z" fill="#69b34c"/>
+<line x1="250" y1="132" x2="250" y2="22" stroke="#4a8f3a" stroke-width="3"/>
+${[40,68,96].map(y=>`<ellipse cx="232" cy="${y}" rx="16" ry="8" fill="#69b34c" transform="rotate(-25 232 ${y})"/><ellipse cx="268" cy="${y}" rx="16" ry="8" fill="#69b34c" transform="rotate(25 268 ${y})"/>`).join('')}<ellipse cx="250" cy="18" rx="8" ry="14" fill="#69b34c"/>
+${T(85,148,'hoja simple')}${T(250,148,'hoja compuesta (folíolos)')}`,'Simple: una sola lámina. Compuesta: varios folíolos')],
+'1-9':[F('0 0 340 215',`<circle cx="45" cy="40" r="18" fill="#fcc419"/>${rng(0,315,45).map(a=>{const r=a*Math.PI/180;return `<line x1="${(45+24*Math.cos(r)).toFixed(1)}" y1="${(40+24*Math.sin(r)).toFixed(1)}" x2="${(45+32*Math.cos(r)).toFixed(1)}" y2="${(40+32*Math.sin(r)).toFixed(1)}" stroke="#fcc419" stroke-width="3"/>`}).join('')}
+${AR(72,60,128,88,'#f59f00')}<text x="102" y="62" fill="#e67700" font-weight="700">luz</text>
+<ellipse cx="190" cy="115" rx="80" ry="42" fill="#4caf50" transform="rotate(-12 190 115)"/>${T(190,112,'glucosa','in b')}${T(190,128,'(en los cloroplastos)','in')}
+${AR(18,148,110,130,'#868e96')}<text x="14" y="172">CO₂ del aire</text>
+${AR(196,208,192,162,'#1c7ed6')}<text x="206" y="204" fill="#1c7ed6">agua de la raíz</text>
+${AR(262,92,318,62,'#2f9e44')}<text x="246" y="40" fill="#2f9e44" font-weight="700">O₂ al aire</text>`,'Fotosíntesis: CO₂ + agua + luz → glucosa + O₂')],
+'2-2':[F('0 0 360 238',`<path d="M164 165 Q92 130 102 58 Q142 80 168 150Z" fill="#f783ac"/><path d="M196 165 Q268 130 258 58 Q218 80 192 150Z" fill="#f783ac"/>
+<path d="M166 170 Q130 168 118 150 Q146 150 171 162Z" fill="#69b34c"/><path d="M194 170 Q230 168 242 150 Q214 150 189 162Z" fill="#69b34c"/>
+<line x1="164" y1="165" x2="146" y2="100" stroke="#e8a33d" stroke-width="2.5"/><ellipse cx="145" cy="95" rx="6" ry="9" fill="#f59f00"/>
+<line x1="196" y1="165" x2="214" y2="100" stroke="#e8a33d" stroke-width="2.5"/><ellipse cx="215" cy="95" rx="6" ry="9" fill="#f59f00"/>
+<rect x="176" y="178" width="8" height="58" fill="#69b34c"/><ellipse cx="180" cy="172" rx="28" ry="9" fill="#8cc265"/>
+<ellipse cx="180" cy="150" rx="16" ry="19" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/><circle cx="175" cy="145" r="3" fill="#fff3bf" stroke="#e67700"/><circle cx="185" cy="152" r="3" fill="#fff3bf" stroke="#e67700"/><circle cx="177" cy="158" r="3" fill="#fff3bf" stroke="#e67700"/>
+<line x1="180" y1="131" x2="180" y2="84" stroke="#2f9e44" stroke-width="5"/><ellipse cx="180" cy="79" rx="11" ry="6" fill="#2f9e44"/>
+${L(112,80,72,48,'pétalo',1)}${L(140,93,72,92,'antera',1)}${L(153,128,72,128,'filamento',1)}${L(128,156,72,166,'sépalo',1)}
+${L(190,78,276,40,'estigma')}${L(180,106,276,80,'estilo')}${L(195,142,276,122,'ovario')}${L(177,158,276,152,'óvulos')}${L(206,174,276,184,'receptáculo')}${L(184,214,276,216,'pedúnculo')}`,
+'Androceo = estambres (antera + filamento). Gineceo = pistilo (estigma + estilo + ovario con óvulos).')],
+'2-7':[F('0 0 360 205',`<circle cx="120" cy="100" r="78" fill="#ffd8a8" stroke="#f76707" stroke-width="6"/><ellipse cx="120" cy="100" rx="30" ry="40" fill="#a0602a"/><ellipse cx="120" cy="100" rx="14" ry="22" fill="#f3dca8"/>
+${L(186,60,226,36,'epicarpio (piel)')}${L(172,104,226,94,'mesocarpio (pulpa)')}${L(148,122,226,150,'endocarpio (carozo)')}${L(126,112,226,190,'semilla')}`,
+'Fruto de durazno. Pericarpio = epicarpio + mesocarpio + endocarpio')],
+'3-2':[F('0 0 340 212',`<rect x="20" y="166" width="300" height="42" fill="#8d6e4a" opacity=".35"/>
+<path d="M130 168 q-20 12 -50 14 M130 168 q10 18 -6 36 M130 168 q26 8 60 6 M130 168 q30 18 70 28 M190 174 q10 6 30 4" stroke="#7a5230" stroke-width="1.4" fill="none"/>
+<rect x="118" y="94" width="24" height="74" rx="6" fill="#f3e3c8" stroke="#c9a77a"/>
+<path d="M64 90 L196 90 L180 99 L80 99Z" fill="#f1d3b3"/>${rng(84,176,8).map(x=>`<line x1="${x}" y1="91" x2="${x}" y2="98" stroke="#b08060"/>`).join('')}
+<path d="M58 92 Q130 6 202 92Z" fill="#c0392b"/><circle cx="110" cy="56" r="6" fill="#fff"/><circle cx="148" cy="46" r="5" fill="#fff"/><circle cx="168" cy="72" r="5" fill="#fff"/><circle cx="92" cy="78" r="4" fill="#fff"/>
+${L(150,58,232,30,'sombrero')}${L(186,95,232,78,'laminillas (esporas)')}${L(142,130,232,130,'pie')}${L(198,196,232,198,'micelio (hifas)')}`,'Hongo: no tiene clorofila, se alimenta de materia orgánica')],
+'3-4':[F('0 0 340 112',`<circle cx="36" cy="44" r="8" fill="#e599f7"/><circle cx="53" cy="44" r="8" fill="#e599f7"/><circle cx="45" cy="59" r="8" fill="#e599f7"/><circle cx="29" cy="60" r="8" fill="#e599f7"/>
+<rect x="104" y="34" width="42" height="13" rx="6.5" fill="#74c0fc"/><rect x="110" y="57" width="42" height="13" rx="6.5" fill="#74c0fc"/>
+<path d="M182 52 q8 -16 16 0 t16 0 t16 0" stroke="#40c057" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M282 34 Q302 40 306 62" stroke="#ffa94d" stroke-width="9" fill="none" stroke-linecap="round"/>
+${T(45,98,'cocos')}${T(128,98,'bacilos')}${T(206,98,'espirilos')}${T(296,98,'vibriones')}`,'Formas de bacterias: células procariotas, sin núcleo')],
+'3-5':[F('0 0 340 222',`<line x1="40" y1="180" x2="300" y2="180" class="gr"/>
+<line x1="120" y1="180" x2="120" y2="110" stroke="#2f9e44" stroke-width="3"/>${rng(115,172,10).map(y=>`<path d="M120 ${y} l-15 -7 M120 ${y+5} l15 -7" stroke="#40c057" stroke-width="3" stroke-linecap="round"/>`).join('')}
+<path d="M120 180 L104 206 M120 180 L120 212 M120 180 L136 204" stroke="#8a5a2b" stroke-width="1.5"/>
+<path d="M120 110 Q122 70 126 42" stroke="#a0602a" stroke-width="2.5" fill="none"/><ellipse cx="128" cy="34" rx="7" ry="12" fill="#c96a26" transform="rotate(15 128 34)"/>
+<circle cx="146" cy="22" r="2" fill="#a0602a"/><circle cx="152" cy="34" r="2" fill="#a0602a"/><circle cx="141" cy="12" r="2" fill="#a0602a"/>
+${L(135,32,186,26,'cápsula con esporas')}${L(124,75,186,72,'esporofito')}${L(134,148,186,146,'gametofito (planta verde)')}${L(128,200,186,202,'rizoides')}`,'Musgo: sin vasos conductores, vive en lugares húmedos')],
+'3-6':[F('0 0 340 222',`<line x1="10" y1="170" x2="210" y2="170" class="gr"/>
+<path d="M30 182 Q120 172 210 184" stroke="#8a5a2b" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M70 184 l-6 22 M120 180 l2 24 M170 184 l8 20" stroke="#8a5a2b" stroke-width="1.5"/>
+<path d="M110 178 Q100 100 140 30" stroke="#2f7a28" stroke-width="3" fill="none"/>
+${[[106,150],[104,132],[106,114],[110,96],[116,79],[124,62],[132,46]].map(([x,y],i)=>{const r=15-i*1.4;return `<ellipse cx="${x-r}" cy="${y}" rx="${r}" ry="5" fill="#69b34c" transform="rotate(18 ${x-r} ${y})"/><ellipse cx="${x+r}" cy="${y}" rx="${r}" ry="5" fill="#69b34c" transform="rotate(-18 ${x+r} ${y})"/>`}).join('')}
+<line x1="128" y1="62" x2="215" y2="85" class="l" stroke-dasharray="3 3"/>
+<circle cx="265" cy="85" r="50" class="ins"/><ellipse cx="265" cy="85" rx="40" ry="17" fill="#69b34c"/>${rng(238,292,11).map(x=>`<circle cx="${x}" cy="78" r="3.5" fill="#a0602a"/><circle cx="${x}" cy="92" r="3.5" fill="#a0602a"/>`).join('')}
+${T(265,152,'soros (esporangios)')}${T(265,168,'debajo de la hoja')}${L(91,114,60,100,'fronde',1)}${L(196,183,214,206,'rizoma')}`,'Helecho: tiene vasos, raíz, tallo subterráneo (rizoma) y hojas (frondes)')],
+'4-3':[F('0 0 380 226',`<rect x="30" y="40" width="140" height="120" rx="8" fill="#b2f2bb" stroke="#2b8a3e" stroke-width="5"/><rect x="37" y="47" width="126" height="106" rx="5" fill="#ebfbee" stroke="#69db7c" stroke-width="1.5"/>
+<ellipse cx="92" cy="110" rx="44" ry="28" fill="#a5d8ff"/>${T(92,114,'vacuola','in')}<circle cx="140" cy="70" r="14" fill="#b197fc"/><circle cx="143" cy="67" r="4" fill="#7048e8"/>
+${[[56,64],[78,58],[150,138],[54,140]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="9" ry="5" fill="#40c057"/>`).join('')}
+<path d="M300 46 C340 44 366 80 360 112 C356 150 330 172 296 170 C258 168 238 140 242 106 C244 74 262 48 300 46Z" fill="#ffe3e3" stroke="#e03131" stroke-width="2"/>
+<circle cx="300" cy="100" r="16" fill="#b197fc"/><circle cx="303" cy="97" r="4" fill="#7048e8"/>${T(305,153,'citoplasma','in')}
+<ellipse cx="262" cy="122" rx="11" ry="6" fill="#ff922b"/><ellipse cx="336" cy="126" rx="11" ry="6" fill="#ff922b" transform="rotate(30 336 126)"/>
+${L(100,40,110,18,'pared celular')}${L(150,60,186,40,'núcleo')}${L(40,152,22,192,'membrana')}${L(150,138,124,192,'cloroplasto')}${L(312,90,334,30,'núcleo')}${L(262,128,252,194,'mitocondria')}
+${T(100,220,'Célula vegetal','b')}${T(300,220,'Célula animal','b')}`,'Solo la vegetal tiene pared celular, cloroplastos y una vacuola grande')],
+'5-3':[F('0 0 340 276',`${T(130,18,'Monocotiledónea','b')}${T(262,18,'Dicotiledónea','b')}
+${[['semilla',54],['hoja',119],['raíz',184],['flor',244]].map(([t,y])=>`<text x="4" y="${y}">${t}</text>`).join('')}
+<ellipse cx="130" cy="50" rx="22" ry="14" fill="#f3dca8" stroke="#b5763a" stroke-width="2"/><ellipse cx="250" cy="50" rx="12" ry="15" fill="#f3dca8" stroke="#b5763a" stroke-width="2"/><ellipse cx="274" cy="50" rx="12" ry="15" fill="#f3dca8" stroke="#b5763a" stroke-width="2"/>
+${T(130,80,'1 cotiledón','s')}${T(262,80,'2 cotiledones','s')}
+<path d="M130 92 Q141 117 130 142 Q119 117 130 92Z" fill="#69b34c"/><path d="M127 98 L127 136 M130 95 L130 139 M133 98 L133 136" stroke="#2f7a28"/>
+<path d="M262 94 Q296 110 262 140 Q228 110 262 94Z" fill="#69b34c"/><path d="M262 97 L262 137 M262 106 L274 100 M262 106 L250 100 M262 117 L279 110 M262 117 L245 110 M262 128 L274 122 M262 128 L250 122" stroke="#2f7a28"/>
+${T(130,156,'paralela','s')}${T(262,156,'reticulada','s')}
+${rng(0,5,1).map(i=>`<path d="M130 168 Q${124+i*2.4} 185 ${116+i*5.6} ${196+(i%2)*6}" stroke="#c49a6c" stroke-width="2" fill="none"/>`).join('')}
+<path d="M256 166 L268 166 L262 204Z" fill="#e8823a"/><path d="M260 178 L248 184 M264 186 L276 192" stroke="#c96a26" stroke-width="1.5"/>
+${T(130,220,'fasciculada','s')}${T(262,220,'pivotante','s')}
+${[0,120,240].map(a=>`<ellipse cx="130" cy="232" rx="6" ry="11" fill="#f783ac" transform="rotate(${a} 130 244)"/>`).join('')}<circle cx="130" cy="244" r="4" fill="#fcc419"/>
+${[0,72,144,216,288].map(a=>`<ellipse cx="262" cy="232" rx="6" ry="11" fill="#f783ac" transform="rotate(${a} 262 244)"/>`).join('')}<circle cx="262" cy="244" r="4" fill="#fcc419"/>
+${T(130,272,'piezas de a 3','s')}${T(262,272,'piezas de a 4 o 5','s')}`,'Cómo distinguir monocotiledóneas y dicotiledóneas')],
+'6-1':[F('0 0 340 140',`${[[2,'#b2f2bb',['productor','(pasto)']],[90,'#fff3bf',['consumidor','primario','(conejo)']],[178,'#ffd8a8',['consumidor','secundario','(zorro)']],[266,'#ffc9c9',['consumidor','terciario','(puma)']]].map(([x,c,ls],i)=>`<rect x="${x}" y="8" width="72" height="62" rx="10" fill="${c}"/>${ls.map((l,j)=>T(x+36,(ls.length===2?36:28)+j*15,l,'in s'+(j===0?' b':''))).join('')}${i<3?AR(x+73,39,x+88,39,'#868e96'):''}<line x1="${x+36}" y1="70" x2="${x+36}" y2="100" class="l" stroke-dasharray="3 3"/>`).join('')}
+<rect x="40" y="100" width="260" height="34" rx="10" fill="#e5dbff"/>${T(170,122,'descomponedores: hongos y bacterias','in s')}`,'La flecha muestra hacia dónde pasa la energía (quién es comido por quién)')],
+'6-2':[F('0 0 340 200',`<polygon points="40,190 300,190 265,150 75,150" fill="#b2f2bb"/><polygon points="75,150 265,150 230,110 110,110" fill="#fff3bf"/><polygon points="110,110 230,110 195,70 145,70" fill="#ffd8a8"/><polygon points="145,70 195,70 170,28" fill="#ffc9c9"/>
+${T(170,175,'productores','in s b')}${T(170,135,'consumidores 1°','in s')}${T(170,95,'2°','in s')}${T(170,62,'3°','in s')}
+<text x="6" y="18" class="s">Al subir un nivel</text><text x="6" y="33" class="s">pasa solo ≈10%</text><text x="6" y="48" class="s">de la energía</text>`,'Pirámide ecológica de energía')]
+};
+
 const K='bio1-raggio-v1';
 let S={pts:{},dd:{},known:{},exam:'2026-11-30',tbest:{},cdone:{},act:{},spent:[],name:'Саша',
 prizes:[['Альфахор',3],['+1 час игрового времени в выбранный день',10],['Особый приз — придумай сам!',25]]};
@@ -426,9 +541,9 @@ function days(){
 function units(){
   const open=[...document.querySelectorAll('details.u[open]')].map(d=>d.dataset.u);
   $('units').innerHTML=U.map(u=>{const p=prog(u);return `<details class="u" data-u="${u.n}" ${open.includes(u.n)?'open':''}><summary>
-  <div><div class="ut">${u.n}. ${u.t}</div><div class="mut">${u.r}</div><div class="bar"><i style="width:${p*100}%"></i></div></div>
+  <div><div class="ut">${u.n}. ${u.t}${(n=>n?`<span class="badge">схем: ${n}</span>`:'')(Object.keys(FIG).filter(k=>k.startsWith(u.n+'-')).reduce((a,k)=>a+FIG[k].length,0))}</div><div class="mut">${u.r}</div><div class="bar"><i style="width:${p*100}%"></i></div></div>
   <span class="pc">${Math.round(p*100)}%</span></summary><div class="ub">
-  ${u.p.map((x,i)=>{const id=u.n+'-'+i,on=S.pts[id];return `<div class="pt"><button class="chk ${on?'on':''}" data-p="${id}" aria-label="Знаю: ${x[0]}">${on?'✓':''}</button><div><p class="es">${x[0]}</p><p class="ru">${x[1]}</p></div></div>`}).join('')}
+  ${u.p.map((x,i)=>{const id=u.n+'-'+i,on=S.pts[id];return `<div class="pt"><button class="chk ${on?'on':''}" data-p="${id}" aria-label="Знаю: ${x[0]}">${on?'✓':''}</button><div><p class="es">${x[0]}</p><p class="ru">${x[1]}</p>${(FIG[id]||[]).join('')}</div></div>`}).join('')}
   </div></details>`}).join('');
 }
 
