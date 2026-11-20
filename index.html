@@ -96,6 +96,7 @@ h3{font-size:19px;margin:24px 0 8px}
 .fig2 text.s{font-size:11.5px}.fig2 text.b{font-weight:700}.fig2 text.in{fill:#14231a}
 .fig2 .l{stroke:var(--mut);stroke-width:1}.fig2 .dt{fill:var(--ink)}
 .fig2 .gr{stroke:var(--mut);stroke-dasharray:4 4}.fig2 .ins{fill:var(--sap);stroke:var(--line);stroke-width:2}
+.fig2 .out{stroke:var(--ink);stroke-width:1;stroke-opacity:.45}.fig2 text.mu{fill:var(--mut)}
 .fig2 figcaption{font-size:14px;color:var(--mut);text-align:center;margin-top:6px}
 .badge{display:inline-block;font-size:12px;color:var(--leaf);background:var(--sap);border-radius:99px;padding:0 8px;margin-left:6px;vertical-align:2px}
 [hidden]{display:none!important}
@@ -212,13 +213,13 @@ const U=[
 ['Organelas','Mitocondria — дыхание, энергия. Cloroplasto — фотосинтез. Ribosomas — белки. Vacuola — запас воды и веществ.'],
 ['Fisiología celular','Клетка питается (nutrición), реагирует на среду (relación) и делится (reproducción, división celular).'],
 ['Tejidos de crecimiento','Meristemas: клетки постоянно делятся. Apicales — на кончиках корня и стебля (рост в длину). Laterales (cambium) — рост в толщину.'],
-['Tejidos definitivos','De protección: epidermis, súber (пробка). Parénquima: clorofiliano (фотосинтез) и de reserva. De sostén: colénquima, esclerénquima. De conducción: xilema и floema. Secretores.']]},
+['Tejidos definitivos','Их собирают в 3 системы. Sistema de protección: epidermis (у молодых), súber (пробка, у старых). Sistema fundamental: parénquima (clorofiliano и de reserva), colénquima и esclerénquima (sostén). Sistema vascular (de conducción): xilema и floema; бывают primario (молодые органы) и secundario (рост в толщину от cambium).']]},
 {n:'5',t:'Agrupación de los vegetales',r:'Классификация и растительность Аргентины',c:'#e67700',p:[
 ['Sistema de clasificación','Linneo придумал nomenclatura binomial: género + especie (Zea mays — кукуруза). Категории от большой к маленькой: reino, división, clase, orden, familia, género, especie.'],
 ['Sin flores / con flores','Criptógamas (без цветков и семян): talofitas, briofitas, pteridofitas. Fanerógamas / espermatofitas (с семенами): gimnospermas и angiospermas.'],
 ['Gimnospermas y angiospermas','Gimnospermas — семя «голое», нет плода (сосна, араукария). Angiospermas — семя внутри плода (все цветковые).'],
 ['Monocotiledóneas y dicotiledóneas','Mono: 1 семядоля, параллельные жилки, мочковатый корень, части цветка по 3 (кукуруза, пшеница, лилия). Di: 2 семядоли, сетчатые жилки, стержневой корень, части по 4–5 (фасоль, роза, подсолнух).'],
-['Regiones fitogeográficas argentinas','Selva paranaense (Misiones: yerba mate, palo rosa); Yungas (Salta, Tucumán: nogal, cedro); Chaco (quebracho, algarrobo); Espinal (caldén, ñandubay); Pampa (pastizales, gramíneas); Monte (jarilla, cactus); Puna (tola, yareta); Altoandina; Estepa patagónica (coirón); Bosque andino‑patagónico (lenga, coihue, alerce, arrayán). Список в учебнике может немного отличаться — сверь с тетрадью.']]},
+['Provincias fitogeográficas argentinas','По Кабрере (Cabrera) их 12. Север: Puneña (tola, yareta), Prepuna (cardón), Altoandina (высокогорье), Yungas (горный лес: nogal, cedro), Chaqueña (quebracho, algarrobo), Paranaense (Misiones: yerba mate, palo rosa). Центр: Espinal (caldén, ñandubay), Pampeana (pastizales, gramíneas), del Monte (jarilla, cactus). Юг: Patagónica (степь: coirón, neneo), Subantártica (лес у Анд: lenga, coihue, arrayán), Insular (Malvinas).']]},
 {n:'6',t:'El hombre y las plantas',r:'Пищевые цепи и природные ресурсы',c:'#2b8a3e',p:[
 ['Recursos alimentarios','Человек ест части растений: semillas (злаки, бобовые), frutos, raíces (морковь), tallos (картофель), hojas (салат).'],
 ['Cadenas alimentarias','Productores (растения) → consumidores primarios (травоядные) → secundarios (хищники) → terciarios. Descomponedores (грибы, бактерии) возвращают вещества в почву. Несколько цепей вместе — red trófica.'],
@@ -315,11 +316,13 @@ const Q=[
 ['4','¿Dónde está el ADN en una célula eucariota?',['En la pared','En el núcleo','En la vacuola','En la membrana'],1,''],
 ['4','El tejido que produce el crecimiento es…',['el meristema','el súber','el xilema','el parénquima'],0,'Meristema — клетки всё время делятся.'],
 ['4','El corcho (súber) es un tejido de…',['conducción','protección','reserva','crecimiento'],1,''],
+['4','El xilema y el floema forman el sistema…',['de protección','fundamental','vascular','de crecimiento'],2,'Vascular = проводящая система.'],
 ['5','Nombre científico correcto:',['maíz común','Zea mays','ZEA MAYS planta','Mays'],1,'Género с большой буквы + especie с маленькой.'],
 ['5','El pino es una…',['angiosperma','gimnosperma','briofita','talofita'],1,'У сосны семена в шишке, без плода.'],
 ['5','Hojas con nervadura paralela son típicas de…',['dicotiledóneas','monocotiledóneas','helechos','musgos'],1,''],
-['5','La yerba mate crece naturalmente en…',['la Puna','la Selva paranaense','la Patagonia','el Monte'],1,'Misiones — влажный субтропический лес.'],
-['5','La lenga y el coihue son árboles del…',['Chaco','Bosque andino‑patagónico','Espinal','Monte'],1,''],
+['5','La yerba mate crece naturalmente en…',['la Puneña','la Paranaense','la Patagónica','del Monte'],1,'Misiones — влажный субтропический лес.'],
+['5','La estepa con coirón del sur pertenece a la provincia…',['Pampeana','Patagónica','Paranaense','Yungas'],1,'Patagónica — сухая степь с кустарниками и травами.'],
+['5','La lenga y el coihue son árboles del…',['Chaqueña','Subantártica','Espinal','del Monte'],1,'Лес у Анд на юге — провинция Subantártica.'],
 ['6','En una cadena alimentaria las plantas son…',['consumidores','productores','descomponedores','carnívoros'],1,''],
 ['6','¿Qué porcentaje aproximado de energía pasa al siguiente nivel?',['100%','50%','10%','0%'],2,'Поэтому пирамида энергии узкая вверху.'],
 ['6','Un ejemplo de recurso no renovable es…',['el agua','el bosque','el petróleo','el suelo'],2,''],
@@ -426,6 +429,39 @@ ${T(130,220,'fasciculada','s')}${T(262,220,'pivotante','s')}
 ${[0,120,240].map(a=>`<ellipse cx="130" cy="232" rx="6" ry="11" fill="#f783ac" transform="rotate(${a} 130 244)"/>`).join('')}<circle cx="130" cy="244" r="4" fill="#fcc419"/>
 ${[0,72,144,216,288].map(a=>`<ellipse cx="262" cy="232" rx="6" ry="11" fill="#f783ac" transform="rotate(${a} 262 244)"/>`).join('')}<circle cx="262" cy="244" r="4" fill="#fcc419"/>
 ${T(130,272,'piezas de a 3','s')}${T(262,272,'piezas de a 4 o 5','s')}`,'Cómo distinguir monocotiledóneas y dicotiledóneas')],
+'5-4':[(()=>{
+const P=a=>a.map(([o,l])=>`${((o+74)*8.6).toFixed(1)},${((-l-21)*8.6+4).toFixed(1)}`).join(' ');
+const AR_=[[-66.2,-21.8],[-64.3,-22],[-62.8,-22],[-62.3,-22.4],[-61,-23.8],[-59.5,-24.8],[-57.7,-25.3],[-58.2,-26.6],[-58.6,-27.3],[-55.9,-27.4],[-54.6,-25.6],[-53.7,-26.2],[-53.8,-27.2],[-55.6,-28.2],[-56.7,-29.4],[-57.6,-30.2],[-58,-31],[-58.2,-32.5],[-58.4,-33.9],[-58.4,-34.5],[-57.3,-35.4],[-57.3,-36],[-56.7,-36.4],[-57.5,-38],[-60,-38.8],[-62.3,-38.8],[-62.2,-40.6],[-63.8,-41.2],[-65.1,-40.8],[-64.2,-42.3],[-63.6,-42.7],[-64.9,-43.2],[-65.4,-45],[-67.5,-46],[-65.8,-47.7],[-67.7,-49.3],[-69.2,-51.6],[-68.4,-52.4],[-71.9,-52],[-72.3,-51],[-73.4,-49.5],[-72.5,-48],[-71.9,-46.5],[-71.7,-45],[-71.6,-43],[-71.8,-41],[-71.2,-39.5],[-71,-37],[-70.4,-35],[-69.9,-33],[-70.1,-31],[-69.6,-29],[-68.5,-27],[-68.3,-25],[-67.2,-22.8]];
+const TF=[[-68.6,-52.6],[-67.6,-53.8],[-66.4,-54.4],[-65.1,-54.7],[-66.5,-55],[-68.6,-54.9]];
+const R=[
+['Chaqueña','#6aa32c','quebracho, algarrobo',[[-67,-21],[-53,-21],[-57,-29],[-60,-31],[-62,-31.5],[-64,-33.5],[-66.5,-33.5],[-67,-29]]],
+['Espinal','#a6d97a','caldén, ñandubay',[[-58.8,-29],[-57.4,-30.5],[-58.2,-33.2],[-60.5,-32.3],[-62.5,-32],[-64.5,-33],[-66,-33.6],[-65.8,-36],[-65,-38.5],[-62.6,-39.8],[-62.3,-38.6],[-63.6,-37.5],[-63.6,-35],[-61.5,-33.9],[-59.6,-33.6],[-59.6,-31.5],[-60,-29.5]]],
+['Pampeana','#cdeeb4','pastizales',[[-58.6,-33.9],[-60.5,-33.1],[-62.5,-33.3],[-63.7,-34.6],[-63.5,-37],[-62.3,-39],[-56,-38.6],[-56,-35.5]]],
+['del Monte','#b8962a','jarilla, cactus',[[-66.8,-26],[-65.7,-26.5],[-65.5,-29],[-66.5,-31.5],[-67,-33.6],[-66,-36],[-65,-38.5],[-62.9,-40],[-62,-41],[-64,-42],[-65.3,-44],[-68,-43.6],[-69.4,-40.5],[-69.4,-37.5],[-69,-33],[-68.6,-29],[-67.9,-27]]],
+['Patagónica','#e3d23c','coirón, neneo',[[-74,-37],[-69.4,-37.5],[-69.4,-40.5],[-68,-43.6],[-65.3,-44],[-62,-42],[-58,-50],[-60,-57],[-74,-57]]],
+['Paranaense','#22b14c','yerba mate',[[-56.3,-27.2],[-53,-24.8],[-53,-28.4],[-55.8,-28.3]]],
+['Yungas','#17643a','nogal, cedro',[[-65,-21],[-63.6,-21],[-64.2,-24.5],[-65.1,-27.4],[-65.6,-28],[-65.6,-26.5],[-65.3,-24.5]]],
+['Prepuna','#e6f2b0','cardón',[[-65.6,-21],[-65,-21],[-65.3,-24.5],[-65.6,-26.5],[-66.6,-30],[-67.3,-30],[-66.6,-26],[-65.9,-24]]],
+['Puneña','#9fa33a','tola, yareta',[[-67.6,-21],[-65.6,-21],[-65.9,-24],[-66.6,-26],[-67.1,-27.6],[-68.4,-27.2],[-68.4,-24]]],
+['Altoandina','#8c4a4a','pastos de altura',[[-68.7,-22.4],[-67.8,-23.5],[-67.7,-25.5],[-67.9,-27.5],[-68.9,-29],[-69.4,-31],[-69.3,-33],[-69.8,-35],[-70.4,-37],[-71.5,-37],[-74,-35],[-74,-21]]],
+['Subantártica','#2e7d5b','lenga, coihue',[[-71.5,-37],[-70.9,-39],[-71,-41],[-71,-43],[-71.2,-45],[-71.3,-47],[-71.8,-49],[-71.6,-51],[-72,-52.3],[-74,-52.6],[-74,-37]]],
+['Subantártica','#2e7d5b','',[[-68.9,-54.3],[-66,-54.5],[-64,-56],[-70,-56]]]];
+const clip=`<clipPath id="argc"><polygon points="${P(AR_)}"/><polygon points="${P(TF)}"/></clipPath>`;
+const leg=R.filter(r=>r[2]).concat([['Insular','#5bb5b0','Malvinas']]);
+return F('0 0 372 316',`<defs>${clip}</defs><g clip-path="url(#argc)"><rect x="0" y="0" width="200" height="320" fill="#a6d97a"/>${R.map(r=>`<polygon points="${P(r[3])}" fill="${r[1]}"/>`).join('')}</g>
+<polygon points="${P(AR_)}" fill="none" class="out"/><polygon points="${P(TF)}" fill="none" class="out"/>
+<ellipse cx="${((-59.4+74)*8.6).toFixed(1)}" cy="${((51.7-21)*8.6+4).toFixed(1)}" rx="9" ry="5" fill="#5bb5b0" class="out"/>
+${leg.map((r,i)=>`<rect x="200" y="${6+i*25}" width="16" height="16" rx="4" fill="${r[1]}" class="out"/><text x="222" y="${14+i*25}" class="b s">${r[0]}</text><text x="222" y="${26+i*25}" class="s mu">${r[2]}</text>`).join('')}`,
+'Provincias fitogeográficas (Cabrera). Mapa esquemático, los límites son aproximados.')})()],
+'4-7':[F('0 0 360 330',`${(()=>{const ring=(cx,cy,r,f,c)=>`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${f}"${c?` class="${c}"`:''}/>`;
+const bund=rng(0,7,1).map(i=>{const a=i*Math.PI/4,x=90+50*Math.cos(a),y=95+50*Math.sin(a);return `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="11" ry="8" fill="#1d4ed8" transform="rotate(${i*45} ${x.toFixed(1)} ${y.toFixed(1)})"/><ellipse cx="${(90+44*Math.cos(a)).toFixed(1)}" cy="${(95+44*Math.sin(a)).toFixed(1)}" rx="8" ry="6" fill="#86d36a" transform="rotate(${i*45} ${(90+44*Math.cos(a)).toFixed(1)} ${(95+44*Math.sin(a)).toFixed(1)})"/>`}).join('');
+return ring(90,95,72,'#8b2a2a')+ring(90,95,67,'#fde3d3')+bund+
+ring(270,95,72,'#8b2a2a')+ring(270,95,62,'#1d4ed8')+ring(270,95,52,'#3fae2a')+ring(270,95,40,'#56c23a')+ring(270,95,28,'#3fae2a')+ring(270,95,12,'#fde3d3')+
+`<circle cx="270" cy="95" r="52" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 2"/>`
+})()}
+${T(90,190,'Tallo joven','b')}${T(90,205,'(estructura primaria)','s')}${T(270,190,'Tallo leñoso','b')}${T(270,205,'(estructura secundaria)','s')}
+${[['#8b2a2a','protección: epidermis / súber'],['#fde3d3','fundamental: parénquima, médula'],['#3fae2a','xilema (anillos = años)'],['#1d4ed8','floema'],['','cambium (línea punteada)']].map(([c,t],i)=>{const x=60,y=224+i*21;return (c?`<rect x="${x}" y="${y}" width="14" height="14" rx="3" fill="${c}" class="out"/>`:`<line x1="${x}" y1="${y+7}" x2="${x+14}" y2="${y+7}" class="out" stroke-dasharray="3 2" stroke-width="2"/>`)+`<text x="${x+20}" y="${y+11}" class="s">${t}</text>`}).join('')}`,
+'Sistemas de tejidos: protección (rojo), fundamental (rosado), vascular (verde y azul)')],
 '6-1':[F('0 0 340 140',`${[[2,'#b2f2bb',['productor','(pasto)']],[90,'#fff3bf',['consumidor','primario','(conejo)']],[178,'#ffd8a8',['consumidor','secundario','(zorro)']],[266,'#ffc9c9',['consumidor','terciario','(puma)']]].map(([x,c,ls],i)=>`<rect x="${x}" y="8" width="72" height="62" rx="10" fill="${c}"/>${ls.map((l,j)=>T(x+36,(ls.length===2?36:28)+j*15,l,'in s'+(j===0?' b':''))).join('')}${i<3?AR(x+73,39,x+88,39,'#868e96'):''}<line x1="${x+36}" y1="70" x2="${x+36}" y2="100" class="l" stroke-dasharray="3 3"/>`).join('')}
 <rect x="40" y="100" width="260" height="34" rx="10" fill="#e5dbff"/>${T(170,122,'descomponedores: hongos y bacterias','in s')}`,'La flecha muestra hacia dónde pasa la energía (quién es comido por quién)')],
 '6-2':[F('0 0 340 200',`<polygon points="40,190 300,190 265,150 75,150" fill="#b2f2bb"/><polygon points="75,150 265,150 230,110 110,110" fill="#fff3bf"/><polygon points="110,110 230,110 195,70 145,70" fill="#ffd8a8"/><polygon points="145,70 195,70 170,28" fill="#ffc9c9"/>
