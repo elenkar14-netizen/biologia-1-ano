@@ -90,6 +90,9 @@ h3{font-size:19px;margin:24px 0 8px}
 .ovb{background:var(--bg);border-radius:20px;padding:24px;max-width:420px;width:100%;text-align:center}
 .ovb .big{font-size:56px}.ovb .row{justify-content:center}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--fl);color:#fff;font-weight:700;padding:12px 20px;border-radius:999px;z-index:30;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.easy{background:light-dark(#fff4e0,#2b2416);border-radius:12px;padding:10px 12px;margin:6px 0;color:var(--ink);font-size:15.5px}
+.exm{margin:8px 0;color:var(--ink);font-size:15px}.exm ul{margin:4px 0 0;padding-left:20px}.exm li{margin:3px 0}
+details.more{margin:6px 0;font-size:14.5px}details.more summary{cursor:pointer;color:var(--leaf);min-height:32px;display:flex;align-items:center}details.more p{margin:4px 0 0;color:var(--mut)}
 .fig2{margin:10px 0 4px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px}
 .fig2 svg{display:block;width:100%;height:auto;max-width:460px;margin:0 auto;overflow:visible}
 .fig2 text{font:12.5px Rubik,system-ui,sans-serif;fill:var(--ink)}
@@ -97,6 +100,7 @@ h3{font-size:19px;margin:24px 0 8px}
 .fig2 .l{stroke:var(--mut);stroke-width:1}.fig2 .dt{fill:var(--ink)}
 .fig2 .gr{stroke:var(--mut);stroke-dasharray:4 4}.fig2 .ins{fill:var(--sap);stroke:var(--line);stroke-width:2}
 .fig2 .out{stroke:var(--ink);stroke-width:1;stroke-opacity:.45}.fig2 text.mu{fill:var(--mut)}
+.cmp{width:100%;border-collapse:collapse;font-size:12.5px;table-layout:fixed}.cmp col.k{width:25%}.cmp th,.cmp td{border-bottom:1px solid var(--line);padding:7px 4px;text-align:left;vertical-align:top}.cmp th{color:var(--leaf)}.cmp td:first-child{color:var(--mut)}.cmp td,.cmp th{overflow-wrap:break-word}
 .fig2 figcaption{font-size:14px;color:var(--mut);text-align:center;margin-top:6px}
 .badge{display:inline-block;font-size:12px;color:var(--leaf);background:var(--sap);border-radius:99px;padding:0 8px;margin-left:6px;vertical-align:2px}
 [hidden]{display:none!important}
@@ -109,7 +113,7 @@ h3{font-size:19px;margin:24px 0 8px}
 <header class="band"><div class="wrap top">
   <div>
     <h1>Биология, 1° año: годовая контрольная</h1>
-    <p class="lead">По программе Escuelas Técnicas Raggio. Шесть тем — шесть листочков. Отмечай, что уже знаешь, и растение будет зеленеть.</p>
+    <p class="lead">По программе Escuelas Técnicas Raggio. Семь тем — семь листочков; ★ — главная тема контрольной. Отмечай, что уже знаешь, и растение будет зеленеть.</p>
     <div class="exam"><label for="ed">Дата контрольной:</label><input type="date" id="ed"><span class="left" id="left"></span></div>
   </div>
   <div>
@@ -129,7 +133,7 @@ h3{font-size:19px;margin:24px 0 8px}
 <main class="band"><div class="wrap">
 <section id="v-plan">
   <h2>План до 30 ноября</h2>
-  <p class="mut">Каждый день 30–40 минут. Порядок всегда один: прочитать тему → карточки → тест. День, отмеченный вовремя, даёт звезду.</p>
+  <p class="mut">Каждый день 30–40 минут. Порядок всегда один: прочитать тему → карточки → тест. День, отмеченный вовремя, даёт звезду. Главное для контрольной — тема ★ «Nutrición y energía».</p>
   <div class="tip"><p><b>Как заниматься</b></p>
   <p>1. Открой «Темы», прочитай нужный раздел вслух. Испанский термин — главное, русский — подсказка.</p>
   <p>2. Пройди «Карточки» этой темы. «Повторить» — карточка вернётся.</p>
@@ -175,6 +179,16 @@ h3{font-size:19px;margin:24px 0 8px}
 <script>
 {
 const U=[
+{n:'0',t:'Nutrición y energía',r:'Главное для контрольной: питание, энергия, фотосинтез, дыхание',c:'#e67700',p:[
+['Nutrición de los seres vivos','<div class="easy"><b>Простыми словами.</b> Каждому живому существу еда нужна для двух вещей: как <b>строительный материал</b> (materia), чтобы расти, и как <b>топливо</b> (energía), чтобы жить. Получать то и другое и есть nutrición.</div><div class="exm"><b>Что спросят на контрольной:</b><ul><li><b>Nutrición</b>: procesos para obtener <b>materia y energía</b>.</li><li>La materia sirve para crecer y reparar el cuerpo; la energía, para realizar las funciones vitales.</li><li>Hay dos tipos de nutrición: <b>autótrofa</b> y <b>heterótrofa</b>.</li></ul></div><details class="more"><summary>Для любопытных (можно не учить)</summary><p>Этапы питания: incorporar el alimento → transformarlo (digestión) → usarlo → eliminar los desechos.</p></details>'],
+['Autótrofos','<div class="easy"><b>Простыми словами.</b> Автотрофы сами себе повара: готовят еду из воздуха (CO₂), воды и солнечного света. Это растения.</div><div class="exm"><b>Что спросят на контрольной:</b><ul><li><b>Autótrofos</b>: fabrican su propio alimento (materia orgánica) a partir de materia inorgánica: CO₂, agua y sales minerales.</li><li>Usan la energía de la <b>luz</b>: hacen fotosíntesis.</li><li>Ejemplos: plantas, algas. En la cadena alimentaria son los <b>productores</b>.</li></ul></div><details class="more"><summary>Для любопытных (можно не учить)</summary><p>Есть ещё <b>quimiosintéticos</b>: некоторые бактерии берут энергию не от света, а от химических реакций.</p></details>'],
+['Heterótrofos','<div class="easy"><b>Простыми словами.</b> Гетеротрофы готовить не умеют, они едят то, что приготовили другие: растения или других животных. Это мы, животные и грибы.</div><div class="exm"><b>Что спросят на контрольной:</b><ul><li><b>Heterótrofos</b>: no fabrican su alimento, toman <b>materia orgánica ya formada</b> de otros seres vivos.</li><li>Ejemplos: animales, hongos, la mayoría de las bacterias, el ser humano.</li><li>Consumidores: herbívoros, carnívoros, omnívoros. <b>Descomponedores</b>: hongos y bacterias.</li></ul></div><details class="more"><summary>Для любопытных (можно не учить)</summary><p><b>Parásitos</b> живут за счёт другого организма. Грибы и бактерии, которые питаются остатками, называют <b>saprófitos</b>.</p></details>'],
+['Flujo de la energía','<div class="easy"><b>Простыми словами.</b> Энергия похожа на воду, которая течёт с горы вниз: от Солнца к растению, от растения к травоядному, дальше к хищнику. На каждой ступеньке большая часть энергии уходит в тепло, и назад она не возвращается. Поэтому Солнце должно светить всё время.</div><div class="exm"><b>Что спросят на контрольной:</b><ul><li>La energía entra al ecosistema como <b>luz solar</b>.</li><li>Pasa de un nivel a otro por la cadena alimentaria y en cada nivel <b>se pierde como calor</b>.</li><li>El flujo de energía es <b>abierto y en un solo sentido</b> (unidireccional).</li></ul></div><details class="more"><summary>Для любопытных (можно не учить)</summary><p>На следующий уровень переходит только около 10% энергии, остальные 90% уходят на жизнь и теряются как тепло. Поэтому хищников всегда меньше, чем травоядных.</p></details>'],
+['Ciclo de la materia','<div class="easy"><b>Простыми словами.</b> Вещество похоже на вещи, которые сдают на переработку: ничего не пропадает. Растение строит себя из воздуха и воды, его съедает заяц, остатки и помёт разлагают грибы и бактерии. Вещество снова уходит в почву и воздух, и оттуда его опять берёт растение.</div><div class="exm"><b>Что спросят на контрольной:</b><ul><li>La materia <b>circula en un ciclo cerrado</b>: productores → consumidores → descomponedores → suelo y aire → productores.</li><li>Los descomponedores transforman la materia orgánica en inorgánica.</li><li>Frase clave: <b>«la energía fluye, la materia circula»</b>.</li></ul></div><details class="more"><summary>Для любопытных (можно не учить)</summary><p>Пример — <b>ciclo del carbono</b>: фотосинтез забирает CO₂ из воздуха, а дыхание и разложение возвращают его обратно.</p></details>'],
+['Fotosíntesis','<div class="easy"><b>Простыми словами.</b> Лист — маленькая фабрика еды. Он берёт CO₂ из воздуха, воду из корня и свет, а делает сахар (глюкозу) для себя и кислород, которым дышим мы.</div><div class="exm"><b>Что спросят на контрольной:</b><ul><li>Ocurre en los <b>cloroplastos</b>, gracias a la <b>clorofila</b> (pigmento verde).</li><li><b>CO₂ + agua + luz → glucosa + oxígeno</b>.</li><li>El CO₂ entra por los <b>estomas</b> de la hoja; el agua viene de la raíz.</li><li>Tiene dos fases: <b>lumínica</b> y <b>oscura</b>.</li></ul></div><details class="more"><summary>Для любопытных (можно не учить)</summary><p>Формула с коэффициентами: 6 CO₂ + 6 H₂O + luz → C₆H₁₂O₆ + 6 O₂. Лишнюю глюкозу растение запасает как <b>almidón</b> (крахмал).</p></details>'],
+['Fase lumínica','<div class="easy"><b>Простыми словами.</b> Первый этап — <b>зарядка батареек</b>. Хлорофилл ловит свет, на этой энергии расщепляется вода. Из воды выходит кислород, а энергия сохраняется в «батарейках».</div><div class="exm"><b>Что спросят на контрольной:</b><ul><li><b>Necesita luz.</b> Ocurre en los <b>tilacoides</b> (granas) del cloroplasto.</li><li>La clorofila capta la luz y <b>se rompe el agua</b>: se libera <b>oxígeno (O₂)</b>.</li><li>Se produce energía química (<b>ATP</b>) que se usa en la fase oscura.</li></ul></div><details class="more"><summary>Для любопытных (можно не учить)</summary><p>Расщепление воды светом называют <b>fotólisis del agua</b>. Кроме ATP получается ещё <b>NADPH</b>, второй «переносчик», он тоже нужен темновой фазе.</p></details>'],
+['Fase oscura','<div class="easy"><b>Простыми словами.</b> Второй этап — <b>готовка</b>. На энергии из заряженных «батареек» растение берёт CO₂ из воздуха и собирает из него сахар. Важно: «oscura» не значит «ночью». Свет ей напрямую не нужен, но идёт она днём, сразу после первого этапа.</div><div class="exm"><b>Что спросят на контрольной:</b><ul><li><b>No necesita luz directamente.</b> Ocurre en el <b>estroma</b> del cloroplasto.</li><li>Usa la energía (ATP) de la fase lumínica.</li><li><b>Toma el CO₂ y forma glucosa.</b></li></ul></div><details class="more"><summary>Для любопытных (можно не учить)</summary><p>Учёные называют этот процесс <b>ciclo de Calvin</b>, а «присоединить CO₂» — fijar el CO₂. Кроме ATP используется NADPH.</p></details>'],
+['Respiración celular','<div class="easy"><b>Простыми словами.</b> Если фотосинтез — это готовка сахара, то дыхание — его сжигание. В каждой клетке есть маленькие «печки», <b>митохондрии</b>. В них сахар соединяется с кислородом, и клетка получает энергию для жизни. Дышат все: и животные, и растения, днём и ночью.</div><div class="exm"><b>Что спросят на контрольной:</b><ul><li>Ocurre en las <b>mitocondrias</b> de todas las células.</li><li><b>Glucosa + oxígeno → CO₂ + agua + energía.</b></li><li>Es el proceso <b>opuesto a la fotosíntesis</b>.</li><li>Sin oxígeno ocurre la <b>fermentación</b>: da poca energía (ej.: levaduras del pan).</li></ul></div><details class="more"><summary>Для любопытных (можно не учить)</summary><p>Энергию клетка хранит в молекулах <b>ATP</b>. С кислородом (aeróbica) получается ≈36–38 ATP, без кислорода (fermentación) — только 2. Брожение бывает <b>alcohólica</b> (дрожжи → алкоголь + CO₂: хлеб, вино) и <b>láctica</b> (йогурт; уставшие мышцы → ácido láctico). Дыхание начинается в цитоплазме (glucólisis) и заканчивается в митохондрии.</p></details>']]},
 {n:'1',t:'Las plantas con flores',r:'Растения с цветками: семя, корень, стебель, лист',c:'#1f6b3a',p:[
 ['La semilla','Семя: tegumento (кожура), embrión (radícula, plúmula, cotiledones) и запас питания. Albuminada — запас в albumen/endospermo (кукуруза, пшеница). Exalbuminada — запас в семядолях (фасоль).'],
 ['La germinación','<b>¿Qué es la germinación?</b> Es el proceso por el cual el embrión de una semilla comienza a crecer y forma una nueva planta.<br><b>Paso 1.</b> La semilla absorbe agua y se hincha.<br><b>Paso 2.</b> Se activa el embrión y utiliza sus reservas de alimento.<br><b>Paso 3.</b> Sale primero la <b>radícula</b>, que crece hacia abajo y forma la raíz.<br><b>Paso 4.</b> Crece la <b>plúmula</b>, que origina el tallo y las primeras hojas.<br><b>Condiciones:</b> agua, oxígeno y temperatura adecuada. Algunas semillas también necesitan luz, pero no todas.<br><b>По-русски:</b> сначала семя впитывает воду, затем корешок закрепляется в почве, а побег тянется вверх.<br><b>Ejemplo:</b> poné un poroto entre algodones húmedos y observá los cambios durante una semana.'],
@@ -351,10 +365,49 @@ const C=[
 ['6','Reforestación','Plantar árboles, mejor nativos, donde se taló el bosque.','Лесовосстановление'],
 ['6','Uso sustentable','Usar un recurso sin agotarlo, dejando que se recupere.','Устойчивое использование'],
 ['6','Veda','Prohibición de pescar o cazar en época de reproducción.','Запрет на сезон'],
-['6','Las 3R','Reducir, reutilizar, reciclar.','Три R']
+['6','Las 3R','Reducir, reutilizar, reciclar.','Три R'],
+['0','Nutrición','Procesos para obtener materia y energía del alimento.','Питание'],
+['0','Autótrofo','Fabrica su propio alimento con materia inorgánica y energía (luz). Ej.: plantas.','Автотроф — сам делает пищу'],
+['0','Heterótrofo','Toma materia orgánica ya formada de otros seres vivos. Ej.: animales, hongos.','Гетеротроф — берёт готовую пищу'],
+['0','Quimiosíntesis','Autótrofos que usan la energía de reacciones químicas (algunas bacterias).','Хемосинтез'],
+['0','Omnívoro','Come plantas y animales.','Всеядный'],
+['0','Saprófito','Se alimenta de restos y desechos: hongos y bacterias descomponedores.','Сапрофит'],
+['0','Flujo de la energía','La energía entra como luz, pasa por la cadena y se pierde como calor: es unidireccional.','Поток энергии — в одну сторону'],
+['0','Ciclo de la materia','La materia circula: productores → consumidores → descomponedores → suelo y aire → productores.','Круговорот вещества'],
+['0','Clorofila','Pigmento verde que capta la luz en los cloroplastos.','Хлорофилл'],
+['0','Estomas','Poros de la hoja por donde entra el CO₂ y sale el O₂.','Устьица'],
+['0','Almidón','Forma en que la planta guarda la glucosa de reserva.','Крахмал'],
+['0','Fase lumínica','Con luz, en los tilacoides: se rompe el agua, se libera O₂ y se forma ATP.','Световая фаза — «зарядка батареек»'],
+['0','Fotólisis del agua','Ruptura del agua por la luz; libera el oxígeno.','Расщепление воды светом'],
+['0','Tilacoides','Sacos de membrana del cloroplasto, apilados en granas. Allí ocurre la fase lumínica.','Тилакоиды'],
+['0','Fase oscura','En el estroma: con el ATP toma el CO₂ y forma glucosa. Ocurre de día.','Темновая фаза — «готовка» сахара'],
+['0','Estroma','Líquido interior del cloroplasto donde ocurre la fase oscura.','Строма'],
+['0','ATP','Molécula que guarda y transporta energía en la célula.','АТФ — «батарейка» клетки'],
+['0','Respiración celular','Glucosa + O₂ → CO₂ + agua + energía (ATP). En las mitocondrias.','Клеточное дыхание'],
+['0','Respiración aeróbica','Con oxígeno; produce mucha energía (≈36–38 ATP).','Аэробное дыхание'],
+['0','Fermentación','Respiración sin oxígeno; produce poca energía (2 ATP).','Брожение'],
+['0','Fermentación alcohólica','Levaduras: glucosa → alcohol + CO₂. Pan, vino.','Спиртовое брожение'],
+['0','Fermentación láctica','Bacterias del yogur y músculos cansados: glucosa → ácido láctico.','Молочнокислое брожение']
 ];
 
 const Q=[
+['0','Los seres que fabrican su propio alimento se llaman…',['heterótrofos','autótrofos','descomponedores','consumidores'],1,'Auto = сам.'],
+['0','¿Cuál es un organismo heterótrofo?',['un helecho','un alga','un hongo','el pasto'],2,'Грибы берут готовую пищу.'],
+['0','Los autótrofos fabrican materia orgánica a partir de…',['materia inorgánica: CO₂, agua y sales','carne','otros seres vivos','restos de animales'],0,''],
+['0','En una cadena alimentaria los autótrofos son…',['consumidores','productores','descomponedores','parásitos'],1,''],
+['0','La energía en el ecosistema…',['circula en un ciclo cerrado','fluye en un solo sentido y se pierde como calor','vuelve siempre al sol','no se pierde nunca'],1,'Энергия течёт, вещество движется по кругу.'],
+['0','La materia en el ecosistema…',['se pierde como calor','circula y se recicla gracias a los descomponedores','solo está en los animales','sale del ecosistema'],1,''],
+['0','¿Dónde ocurre la fotosíntesis?',['en las mitocondrias','en los cloroplastos','en el núcleo','en la raíz'],1,''],
+['0','¿De dónde viene el O₂ que liberan las plantas?',['del CO₂','del agua (fotólisis)','de la glucosa','del suelo'],1,'Кислород выделяется при расщеплении воды в световой фазе.'],
+['0','La fase lumínica ocurre en…',['el estroma','los tilacoides','la mitocondria','la vacuola'],1,''],
+['0','En la fase oscura se…',['libera oxígeno','rompe el agua','fija el CO₂ y se forma glucosa','capta la luz'],2,'Ciclo de Calvin, в строме.'],
+['0','La fase oscura ocurre…',['solo de noche','de día, usando ATP y NADPH de la fase lumínica','en las mitocondrias','sin cloroplastos'],1,'«Oscura» не значит «ночью».'],
+['0','¿Por dónde entra el CO₂ a la hoja?',['por la raíz','por los estomas','por el tallo','por la flor'],1,''],
+['0','La respiración celular ocurre en…',['los cloroplastos','las mitocondrias','la pared celular','los estomas'],1,''],
+['0','Productos de la respiración celular:',['glucosa y O₂','CO₂, agua y energía (ATP)','solo oxígeno','almidón'],1,'Обратная фотосинтезу реакция.'],
+['0','Las plantas respiran…',['solo de noche','solo de día','de día y de noche','nunca'],2,''],
+['0','La fermentación…',['necesita oxígeno','ocurre sin oxígeno y da poca energía','ocurre en los cloroplastos','produce glucosa'],1,''],
+['0','Las levaduras del pan hacen fermentación…',['láctica','alcohólica','aeróbica','lumínica'],1,'Пузырьки CO₂ поднимают тесто.'],
 ['1','¿Qué parte del embrión forma la raíz?',['La plúmula','La radícula','El cotiledón','El tegumento'],1,'Radícula → корень, plúmula → стебель и листья.'],
 ['1','El poroto es una semilla…',['albuminada','exalbuminada','sin embrión','sin cotiledones'],1,'У фасоли запас в семядолях — значит exalbuminada.'],
 ['1','¿Qué necesita una semilla para germinar?',['Luz, tierra y abono','Agua, oxígeno y temperatura adecuada','Solo luz','Solo tierra'],1,'Свет для прорастания обычно не нужен — нужны вода, кислород и тепло.'],
@@ -531,6 +584,48 @@ ring(270,95,72,'#8b2a2a')+ring(270,95,62,'#1d4ed8')+ring(270,95,52,'#3fae2a')+ri
 ${T(90,190,'Tallo joven','b')}${T(90,205,'(estructura primaria)','s')}${T(270,190,'Tallo leñoso','b')}${T(270,205,'(estructura secundaria)','s')}
 ${[['#8b2a2a','protección: epidermis / súber'],['#fde3d3','fundamental: parénquima, médula'],['#3fae2a','xilema (anillos = años)'],['#1d4ed8','floema'],['','cambium (línea punteada)']].map(([c,t],i)=>{const x=60,y=224+i*21;return (c?`<rect x="${x}" y="${y}" width="14" height="14" rx="3" fill="${c}" class="out"/>`:`<line x1="${x}" y1="${y+7}" x2="${x+14}" y2="${y+7}" class="out" stroke-dasharray="3 2" stroke-width="2"/>`)+`<text x="${x+20}" y="${y+11}" class="s">${t}</text>`}).join('')}`,
 'Sistemas de tejidos: protección (rojo), fundamental (rosado), vascular (verde y azul)')],
+'0-0':[F('0 0 340 200',`<rect x="110" y="6" width="120" height="30" rx="15" fill="#ffd8a8"/>${T(170,26,'Nutrición','in b')}
+<path d="M170 36 L80 62 M170 36 L260 62" class="l" style="stroke-width:2"/>
+<rect x="10" y="62" width="150" height="132" rx="14" fill="#d3f9d8"/><rect x="180" y="62" width="150" height="132" rx="14" fill="#ffe8cc"/>
+${T(85,84,'autótrofa','in b')}${T(85,100,'fabrica su alimento','in s')}${T(255,84,'heterótrofa','in b')}${T(255,100,'toma alimento ya hecho','in s')}
+<circle cx="45" cy="128" r="12" fill="#fcc419"/>${rng(0,315,45).map(a=>{const r=a*Math.PI/180;return `<line x1="${(45+15*Math.cos(r)).toFixed(1)}" y1="${(128+15*Math.sin(r)).toFixed(1)}" x2="${(45+20*Math.cos(r)).toFixed(1)}" y2="${(128+20*Math.sin(r)).toFixed(1)}" stroke="#fcc419" stroke-width="2"/>`}).join('')}
+<line x1="110" y1="178" x2="110" y2="122" stroke="#2f7a28" stroke-width="3"/><ellipse cx="96" cy="140" rx="14" ry="6" fill="#4caf50" transform="rotate(-25 96 140)"/><ellipse cx="124" cy="130" rx="14" ry="6" fill="#4caf50" transform="rotate(25 124 130)"/><ellipse cx="110" cy="118" rx="6" ry="11" fill="#4caf50"/>
+${T(85,188,'plantas, algas','in s')}
+<ellipse cx="232" cy="150" rx="22" ry="15" fill="#ced4da"/><circle cx="254" cy="136" r="10" fill="#ced4da"/><ellipse cx="252" cy="118" rx="3.5" ry="11" fill="#ced4da"/><ellipse cx="260" cy="119" rx="3.5" ry="11" fill="#ced4da"/><circle cx="257" cy="134" r="1.6" fill="#343a40"/>
+<rect x="292" y="140" width="10" height="24" rx="3" fill="#f3e3c8"/><path d="M280 142 Q297 112 314 142Z" fill="#c0392b"/>
+${T(255,188,'animales, hongos','in s')}`,'Dos tipos de nutrición')],
+'0-3':[F('0 0 340 190',`<circle cx="26" cy="110" r="18" fill="#fcc419"/>${T(26,146,'Sol','s')}
+${[[70,'productor','100%',60,'#4caf50'],[160,'herbívoro','10%',34,'#f59f00'],[250,'carnívoro','1%',16,'#e8590c']].map(([x,t,p,h,c],i)=>`<rect x="${x}" y="${150-h*1.4}" width="62" height="${h*1.4}" rx="6" fill="${c}"/>${T(x+31,168,t,'s')}${T(x+31,184,p,'b s')}<path d="M${x+31} ${142-h*1.4} q-6 -8 0 -14 q6 -6 0 -14" stroke="#e03131" stroke-width="2" fill="none"/><text x="${x+40}" y="${126-h*1.4}" class="s" fill="#e03131" style="fill:#e03131">calor</text>`).join('')}
+${AR(46,110,66,110,'#f59f00')}${AR(134,120,156,120,'#f59f00')}${AR(224,130,246,130,'#f59f00')}`,'La energía fluye en un solo sentido: en cada nivel se pierde ≈90% como calor')],
+'0-4':[F('0 0 340 250',`${[[170,34,'productores','plantas','#b2f2bb'],[282,125,'consumidores','animales','#ffe8cc'],[170,216,'descomponedores','hongos, bacterias','#e5dbff'],[58,125,'materia inorgánica','CO₂, agua, sales','#d0ebff']].map(([x,y,t,d,c])=>`<rect x="${x-56}" y="${y-22}" width="112" height="44" rx="12" fill="${c}"/>${T(x,y-3,t,'in b s')}${T(x,y+13,d,'in s')}`).join('')}
+<path d="M226 50 Q270 64 278 100" stroke="#2f9e44" stroke-width="3" fill="none"/><polygon points="278,102 271,92 284,93" fill="#2f9e44"/>
+<path d="M278 148 Q268 196 228 208" stroke="#2f9e44" stroke-width="3" fill="none"/><polygon points="226,209 236,202 236,215" fill="#2f9e44"/>
+<path d="M114 208 Q70 196 62 150" stroke="#2f9e44" stroke-width="3" fill="none"/><polygon points="62,148 56,160 69,159" fill="#2f9e44"/>
+<path d="M62 102 Q72 60 114 48" stroke="#2f9e44" stroke-width="3" fill="none"/><polygon points="116,47 104,44 107,57" fill="#2f9e44"/>
+${T(170,120,'la materia','b')}${T(170,138,'circula','b')}`,'Ciclo de la materia: nada se pierde, los descomponedores la devuelven al suelo y al aire')],
+'0-6':[F('0 0 340 232',`${T(95,20,'FASE LUMÍNICA','b')}${T(250,20,'FASE OSCURA','b')}
+<rect x="20" y="36" width="300" height="160" rx="80" fill="#d3f9d8" stroke="#2f9e44" stroke-width="3"/><line x1="172" y1="40" x2="172" y2="192" class="l" stroke-dasharray="4 4"/>
+${[[86,92],[124,118],[86,146]].map(([x,y])=>rng(0,3,1).map(k=>`<ellipse cx="${x}" cy="${y+k*7-10}" rx="17" ry="4" fill="#2f9e44" stroke="#1b5e20"/>`).join('')).join('')}
+${AR(8,56,58,82,'#f59f00')}<text x="4" y="50" class="b s" style="fill:#e67700">luz</text>
+${AR(16,214,60,162,'#1c7ed6')}<text x="4" y="228" class="s" style="fill:#1c7ed6">H₂O</text>
+${AR(148,158,160,214,'#2f9e44')}<text x="166" y="226" class="b s" style="fill:#2f9e44">O₂</text>
+${AR(150,112,204,112,'#e67700')}${T(176,102,'energía (ATP)','in s b')}
+<circle cx="252" cy="112" r="30" fill="none" stroke="#e67700" stroke-width="3" stroke-dasharray="150 40"/><polygon points="270,88 262,82 274,79" fill="#e67700"/>${T(252,109,'se forma','in s')}${T(252,123,'glucosa','in s b')}
+${AR(322,46,282,90,'#868e96')}<text x="296" y="38" class="b s">CO₂</text>
+${AR(244,146,226,210,'#e67700')}<text x="232" y="226" class="b s" style="fill:#e67700">glucosa</text>
+${T(110,188,'tilacoides','in s')}${T(258,180,'estroma','in s')}`,'Cloroplasto: la fase lumínica «carga» energía (ATP), la fase oscura la usa para hacer glucosa')],
+'0-8':[F('0 0 340 170',`<ellipse cx="170" cy="85" rx="90" ry="48" fill="#ffd8a8" stroke="#e8590c" stroke-width="3"/>
+<path d="M96 85 q8 -30 16 0 q8 30 16 0 q8 -30 16 0 q8 30 16 0 q8 -30 16 0 q8 30 16 0 q8 -30 16 0 q8 30 16 0 q8 -30 16 0" stroke="#e8590c" stroke-width="2.5" fill="none"/>
+${T(170,152,'mitocondria','b')}
+${AR(8,60,76,72,'#868e96')}<text x="4" y="52" class="s b">glucosa</text>${AR(8,112,76,100,'#1c7ed6')}<text x="4" y="128" class="s b" style="fill:#1c7ed6">O₂</text>
+${AR(262,70,330,52,'#868e96')}<text x="290" y="40" class="s b">CO₂ + H₂O</text>${AR(262,100,330,122,'#e67700')}<text x="290" y="142" class="s b" style="fill:#e67700">ATP</text>`,'Respiración celular: la mitocondria saca la energía de la glucosa'),
+`<figure class="fig2"><table class="cmp"><colgroup><col class="k"><col><col></colgroup><thead><tr><th></th><th>Fotosíntesis</th><th>Respiración celular</th></tr></thead><tbody>
+<tr><td>Dónde</td><td>cloroplastos</td><td>mitocondrias</td></tr>
+<tr><td>Quién</td><td>solo autótrofos (plantas, algas)</td><td>todos los seres vivos</td></tr>
+<tr><td>Cuándo</td><td>con luz (de día)</td><td>siempre, día y noche</td></tr>
+<tr><td>Toma</td><td>CO₂ + agua + luz</td><td>glucosa + O₂</td></tr>
+<tr><td>Libera</td><td>glucosa + O₂</td><td>CO₂ + agua + energía (ATP)</td></tr>
+<tr><td>Energía</td><td>la guarda en la glucosa</td><td>la saca de la glucosa</td></tr></tbody></table><figcaption>Son procesos opuestos</figcaption></figure>`],
 '6-5':[F('0 0 340 150',`<rect x="6" y="8" width="160" height="134" rx="12" fill="#d3f9d8"/><rect x="174" y="8" width="160" height="134" rx="12" fill="#e7f5ff"/>
 ${T(86,30,'in situ','in b')}${T(86,46,'en su ambiente','in s')}${T(254,30,'ex situ','in b')}${T(254,46,'fuera de su ambiente','in s')}
 <path d="M30 120 L56 70 L82 120Z M60 120 L90 60 L120 120Z M96 120 L122 78 L148 120Z" fill="#2f9e44"/><text x="86" y="136" text-anchor="middle" class="in s">parque nacional</text>
@@ -546,6 +641,7 @@ ${AR(207,82,240,110,'#868e96')}${AR(226,150,116,150,'#868e96')}${AR(98,110,132,8
 ${T(170,175,'productores','in s b')}${T(170,135,'consumidores 1°','in s')}${T(170,95,'2°','in s')}${T(170,62,'3°','in s')}
 <text x="6" y="18" class="s">Al subir un nivel</text><text x="6" y="33" class="s">pasa solo ≈10%</text><text x="6" y="48" class="s">de la energía</text>`,'Pirámide ecológica de energía')]
 };
+FIG['0-5']=FIG['1-9'];
 
 const K='bio1-raggio-v1';
 let S={pts:{},dd:{},known:{},exam:'2026-11-30',tbest:{},cdone:{},act:{},spent:[],name:'Саша',
@@ -556,25 +652,26 @@ const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
 const $=id=>document.getElementById(id);
 
 const D=[['2026-11-21','1','Семя, корень, стебель','От «La semilla» до «Conducción», карточки'],
-['2026-11-22','1','Лист, фотосинтез, видоизменения','До конца темы + тест 1'],
-['2026-11-23','2','Размножение, цветок, плод','Нарисуй цветок, подпиши 10 частей + тест 2'],
-['2026-11-24','3','Без цветков: водоросли, грибы, мхи, папоротники','Карточки + тест 3'],
-['2026-11-25','4','Клетка и ткани','Нарисуй растительную клетку + тест 4'],
-['2026-11-26','5','Классификация и регионы Аргентины','Найди регионы на карте + тест 5'],
-['2026-11-27','6','Пищевые цепи и ресурсы','Карточки + тест 6'],
-['2026-11-28','*','Все карточки подряд','Пока не кончится стопка «Повторить»'],
+['2026-11-22','0','Nutrición, autótrofos y heterótrofos','пункты 1–3 + их карточки'],
+['2026-11-23','0','Flujo de la energía y ciclo de la materia','пункты 4–5, нарисуй круговорот'],
+['2026-11-24','0','Fotosíntesis: fase lumínica y fase oscura','пункты 6–8, нарисуй хлоропласт с двумя фазами'],
+['2026-11-25','0','Respiración celular y fermentación','пункт 9 + весь тест по этой теме'],
+['2026-11-26','*','Повторение: темы 1 и 2','Лист, фотосинтез, цветок — только схемы и тест'],
+['2026-11-27','*','Повторение: темы 3–6','Бегло схемы + карточки ★ ещё раз'],
+['2026-11-28','*','Все карточки ★ + тест ★','Пока не будет 80% и выше'],
 ['2026-11-29','*','Большой тест по всем темам','Разбери ошибки, вечером отдых и сон']];
 const WD=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
 const today=()=>{const t=new Date();return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0')};
 const dl=s=>{const d=new Date(s+'T00:00');return WD[d.getDay()]+' '+d.getDate()};
 
+const lb=n=>n==='0'?'★':n;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 function streak(){let n=0;const d=new Date();if(!S.act[fmt(d)])d.setDate(d.getDate()-1);while(S.act[fmt(d)]){n++;d.setDate(d.getDate()-1)}return n}
 function mark(){S.act[today()]=1;S.maxst=Math.max(S.maxst||0,streak())}
 function goals(){
   const g=[];
-  U.forEach(u=>{g.push([`Тема ${u.n}: тест по теме на 80% и выше`,2,(S.tbest[u.n]||0)>=80]);g.push([`Тема ${u.n}: все карточки в «Знаю»`,1,!!S.cdone[u.n]])});
+  U.forEach(u=>{const nm=u.n==='0'?'★ Питание и энергия':'Тема '+u.n,k=u.n==='0'?2:1;g.push([`${nm}: тест по теме на 80% и выше`,2*k,(S.tbest[u.n]||0)>=80]);g.push([`${nm}: все карточки в «Знаю»`,k,!!S.cdone[u.n]])});
   g.push(['Большой тест по всем темам на 80% и выше',5,(S.tbest.all||0)>=80]);
   const ok=D.filter((d,i)=>S.dd[i]&&S.dd[i]<=d[0]).length;
   g.push([`Дни плана, отмеченные вовремя: ${ok} из ${D.length}`,ok,ok>0,1]);
@@ -590,7 +687,7 @@ function checkCards(){U.forEach(u=>{if(C.every((c,i)=>c[0]!==u.n||S.known[i]))S.
 
 function prizes(){
   const g=goals(),e=earned(),s=spent(),b=e-s,st=streak();
-  const code=`${S.name||'Я'} · биология 1° año · ${U.filter(u=>prog(u)===1).length}/6 тем · ${e} ⭐ заработано · серия ${st} дн.`;
+  const code=`${S.name||'Я'} · биология 1° año · ${U.filter(u=>prog(u)===1).length}/${U.length} тем · ${e} ⭐ заработано · серия ${st} дн.`;
   $('pz').innerHTML=`<div class="wallet"><div><span class="score">${b} ⭐</span><div class="mut">можно потратить</div></div>
   <div class="mut">Заработано ${e} · потрачено ${s}<br>Серия: <b>${st} дн.</b> подряд</div></div>
   <h3>Магазин</h3>
@@ -628,12 +725,12 @@ $('pz').addEventListener('change',e=>{const t=e.target;
 function prog(u){const n=u.p.length;let k=0;u.p.forEach((_,i)=>{if(S.pts[u.n+'-'+i])k++});return k/n}
 
 function plant(){
-  const pos=[[60,150,-1],[140,128,1],[58,104,-1],[142,82,1],[62,58,-1],[138,38,1]];
+  const pos=[[140,172,1],[60,150,-1],[140,128,1],[58,104,-1],[142,82,1],[62,58,-1],[138,38,1]];
   const leaves=U.map((u,i)=>{const [x,y,s]=pos[i],p=prog(u);
     const path=`M100 ${y+10} C ${100+s*20} ${y-18}, ${x+s*10} ${y-22}, ${x} ${y} C ${x+s*14} ${y+16}, ${100+s*16} ${y+20}, 100 ${y+10}Z`;
     return `<path d="${path}" fill="rgba(255,255,255,.18)" stroke="#fff" stroke-width="1.5"/>
     <path d="${path}" fill="#b7f0c4" opacity="${(0.15+p*0.85).toFixed(2)}"/>
-    <text x="${x+s*-4}" y="${y+4}" font-size="11" font-weight="700" fill="#0d3b1f" text-anchor="middle">${u.n}</text>`}).join('');
+    <text x="${x+s*-4}" y="${y+4}" font-size="11" font-weight="700" fill="#0d3b1f" text-anchor="middle">${lb(u.n)}</text>`}).join('');
   const all=U.every(u=>prog(u)===1);
   $('plant').innerHTML=`<svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMax meet" role="img">
   <path d="M100 196 C 96 150, 104 100, 100 22" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
@@ -647,7 +744,7 @@ function plant(){
 function days(){
   const td=today();
   $('days').innerHTML=D.map((d,i)=>{const on=S.dd[i],late=on&&on>d[0];return `<div class="day ${on?'done':''} ${d[0]===td?'now':''}"><b class="n">${dl(d[0])}</b>
-  <div><div class="t"><b>${d[2]}</b>${d[0]===td?' <span class="tag">сегодня</span>':''}</div><div class="mut">${d[1]==='*'?'Повторение':'Тема '+d[1]} · ${d[3]}${on?(late?' · без звезды, сделано позже':' · +1 ⭐'):''}</div></div>
+  <div><div class="t"><b>${d[2]}</b>${d[0]===td?' <span class="tag">сегодня</span>':''}</div><div class="mut">${d[1]==='*'?'Повторение':d[1]==='0'?'★ Питание и энергия':'Тема '+d[1]} · ${d[3]}${on?(late?' · без звезды, сделано позже':' · +1 ⭐'):''}</div></div>
   <button class="chk ${on?'on':''}" data-d="${i}" aria-label="${dl(d[0])} готово">${on?'✓':''}</button></div>`}).join('')
   +`<div class="day exam-row"><b class="n">Пн 30</b><div><b>Контрольная. Удачи!</b><div class="mut">Утром можно 10 минут полистать карточки</div></div><span></span></div>`;
 }
@@ -655,10 +752,10 @@ function days(){
 function units(){
   const open=[...document.querySelectorAll('details.u[open]')].map(d=>d.dataset.u);
   $('units').innerHTML=U.map(u=>{const p=prog(u);return `<details class="u" data-u="${u.n}" ${open.includes(u.n)?'open':''}><summary>
-  <div><div class="ut">${u.n}. ${u.t}${(n=>n?`<span class="badge">схем: ${n}</span>`:'')(Object.keys(FIG).filter(k=>k.startsWith(u.n+'-')).reduce((a,k)=>a+FIG[k].length,0))}</div><div class="mut">${u.r}</div><div class="bar"><i style="width:${p*100}%"></i></div></div>
+  <div><div class="ut">${u.n==='0'?'★':u.n+'.'} ${u.t}${(n=>n?`<span class="badge">схем: ${n}</span>`:'')(Object.keys(FIG).filter(k=>k.startsWith(u.n+'-')).reduce((a,k)=>a+FIG[k].length,0))}</div><div class="mut">${u.r}</div><div class="bar"><i style="width:${p*100}%"></i></div></div>
   <span class="pc">${Math.round(p*100)}%</span></summary><div class="ub">
-  ${u.p.map((x,i)=>{const id=u.n+'-'+i,on=S.pts[id];return `<div class="pt"><button class="chk ${on?'on':''}" data-p="${id}" aria-label="Знаю: ${x[0]}">${on?'✓':''}</button><div><p class="es">${x[0]}</p><p class="ru">${x[1]}</p>${(FIG[id]||[]).join('')}${EXTRA[id]?`<div class="lesson-extra"><p><b>Explicación:</b> ${EXTRA[id][0]}</p><p><b>Пояснение:</b> ${EXTRA[id][1]}</p><p class="check-question"><b>Comprobá:</b> ${EXTRA[id][2]}</p></div>`:''}</div></div>`}).join('')}
-  <section class="unit-recap"><h3>Сравни и запомни</h3>${tablaUnidad(u.n)}<h3>Рисунок и подписи</h3>${ejercicioUnidad(u.n)}</section>
+  ${u.p.map((x,i)=>{const id=u.n+'-'+i,on=S.pts[id];return `<div class="pt"><button class="chk ${on?'on':''}" data-p="${id}" aria-label="Знаю: ${x[0]}">${on?'✓':''}</button><div><p class="es">${x[0]}</p><div class="ru">${x[1]}</div>${(FIG[id]||[]).join('')}${EXTRA[id]?`<div class="lesson-extra"><p><b>Explicación:</b> ${EXTRA[id][0]}</p><p><b>Пояснение:</b> ${EXTRA[id][1]}</p><p class="check-question"><b>Comprobá:</b> ${EXTRA[id][2]}</p></div>`:''}</div></div>`}).join('')}
+  ${COMPARA[u.n]?`<section class="unit-recap"><h3>Сравни и запомни</h3>${tablaUnidad(u.n)}<h3>Рисунок и подписи</h3>${ejercicioUnidad(u.n)}</section>`:''}
   </div></details>`}).join('');
 }
 
@@ -670,14 +767,14 @@ function exam(){
 }
 
 let cu='all',deck=[],ci=0,flip=false;
-function filters(el,cur,fn){el.innerHTML=[['all','Все'],...U.map(u=>[u.n,'Тема '+u.n])].map(([v,l])=>`<button class="btn ${cur===v?'sel':''}" data-f="${v}">${l}</button>`).join('');
+function filters(el,cur,fn){el.innerHTML=[['all','Все'],...U.map(u=>[u.n,u.n==='0'?'★ Питание':'Тема '+u.n])].map(([v,l])=>`<button class="btn ${cur===v?'sel':''}" data-f="${v}">${l}</button>`).join('');
   el.onclick=e=>{const b=e.target.closest('[data-f]');if(b)fn(b.dataset.f)}}
 function buildDeck(){deck=C.map((c,i)=>i).filter(i=>(cu==='all'||C[i][0]===cu)&&!S.known[i]);ci=0;flip=false;card();filters($('cf'),cu,f=>{cu=f;buildDeck()})}
 function card(){
   const fc=$('fc');
   if(!deck.length){fc.className='fc back';fc.innerHTML='<div class="big">Все карточки выучены!</div><div class="r">Нажми, чтобы начать заново</div>';$('cn').textContent='';return}
   const c=C[deck[ci]];fc.className='fc'+(flip?' back':'');
-  fc.innerHTML=flip?`<div class="d">${c[2]}</div><div class="r">${c[3]}</div>`:`<div class="mut">Тема ${c[0]}</div><div class="big">${c[1]}</div><div class="r">Что это? Нажми, чтобы проверить</div>`;
+  fc.innerHTML=flip?`<div class="d">${c[2]}</div><div class="r">${c[3]}</div>`:`<div class="mut">${c[0]==='0'?'★ Питание и энергия':'Тема '+c[0]}</div><div class="big">${c[1]}</div><div class="r">Что это? Нажми, чтобы проверить</div>`;
   $('cn').textContent=`Осталось: ${deck.length}`;
 }
 $('fc').onclick=()=>{if(!deck.length){C.forEach((c,i)=>{if(cu==='all'||c[0]===cu)delete S.known[i]});save();buildDeck();return}flip=!flip;card()};
